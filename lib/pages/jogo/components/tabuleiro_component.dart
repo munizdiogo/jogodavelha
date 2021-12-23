@@ -9,82 +9,99 @@ class TabuleiroComponent extends StatefulWidget {
 }
 
 class _TabuleiroComponentState extends State<TabuleiroComponent> {
-  @override
+  var startGame = false;
   Widget build(BuildContext context) {
     var colorLine = Theme.of(context).primaryColorLight;
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CelularComponent(
-              id: 'a1',
-              marcador: 'X',
-              colorMarcador: Colors.lightBlue,
+    return !startGame
+        ? TextButton(
+            onPressed: () {
+              setState(() {
+                startGame = true;
+              });
+            },
+            child: Text(
+              'Iniciar Jogo',
+              style: TextStyle(fontSize: 36),
             ),
-            Container(height: 110, width: 4, color: colorLine),
-            CelularComponent(
-              id: 'a2',
-              marcador: 'X',
-              colorMarcador: Colors.lightBlue,
-            ),
-            Container(height: 110, width: 4, color: colorLine),
-            CelularComponent(
-              id: 'a3',
-              marcador: 'X',
-              colorMarcador: Colors.lightBlue,
-            ),
-          ],
-        ),
-        Container(height: 4, width: 340, color: colorLine),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CelularComponent(
-              id: 'b1',
-              marcador: 'X',
-              colorMarcador: Colors.lightBlue,
-            ),
-            Container(height: 110, width: 4, color: colorLine),
-            CelularComponent(
-              id: 'b2',
-              marcador: 'X',
-              colorMarcador: Colors.lightBlue,
-            ),
-            Container(height: 110, width: 4, color: colorLine),
-            CelularComponent(
-              id: 'b3',
-              marcador: 'X',
-              colorMarcador: Colors.lightBlue,
-            ),
-          ],
-        ),
-        Container(height: 4, width: 340, color: colorLine),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CelularComponent(
-              id: 'c1',
-              marcador: 'X',
-              colorMarcador: Colors.lightBlue,
-            ),
-            Container(height: 110, width: 4, color: colorLine),
-            CelularComponent(
-              id: 'c2',
-              marcador: 'X',
-              colorMarcador: Colors.lightBlue,
-            ),
-            Container(height: 110, width: 4, color: colorLine),
-            CelularComponent(
-              id: 'c3',
-              marcador: 'X',
-              colorMarcador: Colors.lightBlue,
-            ),
-          ],
-        ),
-      ],
-    );
+          )
+        : Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CelularComponent(
+                    id: 'a1',
+                    marcador: 'X',
+                    colorMarcador: Colors.lightBlue,
+                  ),
+                  Container(height: 110, width: 4, color: colorLine),
+                  CelularComponent(
+                    id: 'a2',
+                    marcador: 'X',
+                    colorMarcador: Colors.lightBlue,
+                  ),
+                  Container(height: 110, width: 4, color: colorLine),
+                  CelularComponent(
+                    id: 'a3',
+                    marcador: 'X',
+                    colorMarcador: Colors.lightBlue,
+                  ),
+                ],
+              ),
+              AnimatedContainer(
+                height: 4,
+                width: startGame ? 340 : 0,
+                color: colorLine,
+                duration: Duration(seconds: 2),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CelularComponent(
+                    id: 'b1',
+                    marcador: 'X',
+                    colorMarcador: Colors.lightBlue,
+                  ),
+                  Container(height: 110, width: 4, color: colorLine),
+                  CelularComponent(
+                    id: 'b2',
+                    marcador: 'X',
+                    colorMarcador: Colors.lightBlue,
+                  ),
+                  Container(height: 110, width: 4, color: colorLine),
+                  CelularComponent(
+                    id: 'b3',
+                    marcador: 'X',
+                    colorMarcador: Colors.lightBlue,
+                  ),
+                ],
+              ),
+              Container(height: 4, width: 340, color: colorLine),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CelularComponent(
+                    id: 'c1',
+                    marcador: 'X',
+                    colorMarcador: Colors.lightBlue,
+                  ),
+                  Container(height: 110, width: 4, color: colorLine),
+                  CelularComponent(
+                    id: 'c2',
+                    marcador: 'X',
+                    colorMarcador: Colors.lightBlue,
+                  ),
+                  Container(height: 110, width: 4, color: colorLine),
+                  CelularComponent(
+                    id: 'c3',
+                    marcador: 'X',
+                    colorMarcador: Colors.lightBlue,
+                  ),
+                ],
+              ),
+            ],
+          );
   }
 }

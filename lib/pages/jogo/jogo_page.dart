@@ -43,7 +43,7 @@ class _JogoPageState extends State<JogoPage> {
                           size: 36,
                         ),
                       ),
-                      Text('Apelido Jogador 1'),
+                      Text('Apelido Jogador 2'),
                     ],
                   ),
                 ],

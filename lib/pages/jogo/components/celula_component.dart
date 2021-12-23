@@ -41,7 +41,7 @@ class _CelularComponentState extends State<CelularComponent> {
             : Container(),
         height: 100,
         width: 100,
-        margin: EdgeInsets.all(5),
+        margin: const EdgeInsets.all(5),
       ),
     );
   }
