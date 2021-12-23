@@ -14,8 +14,7 @@ class JogoPage extends StatefulWidget {
 class _JogoPageState extends State<JogoPage> {
   @override
   Widget build(BuildContext context) {
-    var jogoController =
-        ModalRoute.of(context)!.settings.arguments as JogoController;
+    var playerModel = ModalRoute.of(context)!.settings.arguments as PlayerModel;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -25,8 +24,8 @@ class _JogoPageState extends State<JogoPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              JogadoresComponents(jogoController: jogoController),
-              TabuleiroComponent(jogoController: jogoController),
+              JogadoresComponents(playerModel: playerModel),
+              TabuleiroComponent(playerModel: playerModel),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacementNamed(route.ROOM);

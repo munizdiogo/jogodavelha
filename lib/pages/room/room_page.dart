@@ -11,7 +11,7 @@ class RoomPage extends StatefulWidget {
 }
 
 class _RoomPageState extends State<RoomPage> {
-  late JogoController jogoController;
+  late PlayerModel playerModel;
   TextEditingController textEditingController = TextEditingController();
   String colorSelected = '';
 
@@ -152,14 +152,14 @@ class _RoomPageState extends State<RoomPage> {
                     text: 'Escolha uma cor',
                   );
                 } else {
-                  jogoController = JogoController(
+                  playerModel = PlayerModel(
                     nomeJogador1: textEditingController.text,
                     corJogador1: getColorSelected(colorSelected),
                   );
                   Navigator.pushReplacementNamed(
                     context,
                     route.JOGO,
-                    arguments: jogoController,
+                    arguments: playerModel,
                   );
                 }
                 print(textEditingController.text);

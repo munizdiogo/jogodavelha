@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:jogodavelha/controllers/jogo_controller.dart';
 
 class CelularComponent extends StatefulWidget {
   final String id;
   final String marcador;
   final Color colorMarcador;
+  final PlayerModel playerModel;
   const CelularComponent({
     Key? key,
     required this.id,
     required this.marcador,
     required this.colorMarcador,
+    required this.playerModel,
   }) : super(key: key);
 
   @override
@@ -17,13 +20,19 @@ class CelularComponent extends StatefulWidget {
 
 class _CelularComponentState extends State<CelularComponent> {
   bool isSelected = false;
+
   @override
   Widget build(BuildContext context) {
+    void showMarcador() {
+      setState(() {
+        isSelected = isSelected ? isSelected : !isSelected;
+      });
+    }
+
     return InkWell(
       onTap: () {
-        setState(() {
-          isSelected = isSelected ? isSelected : !isSelected;
-        });
+        showMarcador();
+
         print(widget.id);
       },
       child: Container(

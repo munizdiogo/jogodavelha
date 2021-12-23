@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:jogodavelha/controllers/jogo_controller.dart';
 
 class JogadoresComponents extends StatefulWidget {
-  final JogoController jogoController;
+  final PlayerModel playerModel;
   const JogadoresComponents({
     Key? key,
-    required this.jogoController,
+    required this.playerModel,
   }) : super(key: key);
 
   @override
@@ -25,15 +25,15 @@ class _JogadoresComponentsState extends State<JogadoresComponents> {
               child: Icon(
                 Icons.person,
                 size: 36,
-                color: widget.jogoController.corJogador1,
+                color: widget.playerModel.corJogador1,
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
-                widget.jogoController.nomeJogador1,
+                widget.playerModel.nomeJogador1,
                 style: TextStyle(
-                  color: widget.jogoController.corJogador1,
+                  color: widget.playerModel.corJogador1,
                   fontSize: 16,
                 ),
               ),
@@ -47,18 +47,16 @@ class _JogadoresComponentsState extends State<JogadoresComponents> {
               child: Icon(
                 Icons.person,
                 size: 36,
-                color: widget.jogoController.corJogador2 ??
-                    Theme.of(context).textSelectionTheme.selectionColor,
+                color: widget.playerModel.corJogador2,
               ),
             ),
             SizedBox(height: 4),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
-                widget.jogoController.nomeJogador2 ?? 'Jogador 2',
+                widget.playerModel.nomeJogador2 ?? 'Jogador 2',
                 style: TextStyle(
-                  color: widget.jogoController.corJogador2 ??
-                      Theme.of(context).textSelectionTheme.selectionColor,
+                  color: widget.playerModel.corJogador2,
                   fontSize: 16,
                 ),
               ),
