@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jogodavelha/controllers/jogo_controller.dart';
 import 'package:jogodavelha/pages/jogo/components/jogadores_component.dart';
 import 'package:jogodavelha/pages/jogo/components/tabuleiro_component.dart';
 
@@ -12,6 +13,8 @@ class JogoPage extends StatefulWidget {
 class _JogoPageState extends State<JogoPage> {
   @override
   Widget build(BuildContext context) {
+    var jogoController =
+        ModalRoute.of(context)!.settings.arguments as JogoController;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -20,9 +23,9 @@ class _JogoPageState extends State<JogoPage> {
           // color: Colors.amber,
           child: Column(
             children: [
-              JogadoresComponents(),
+              JogadoresComponents(jogoController: jogoController),
               SizedBox(height: 50),
-              TabuleiroComponent()
+              TabuleiroComponent(jogoController: jogoController)
             ],
           ),
         ),

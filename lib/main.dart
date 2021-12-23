@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jogodavelha/pages/jogo/jogo_page.dart';
+import 'package:jogodavelha/routes/routes.dart' as route;
 
 import 'pages/room/room_page.dart';
 
@@ -21,6 +22,10 @@ class MyApp extends StatelessWidget {
       ),
       home: const RoomPage(),
       darkTheme: ThemeData.dark(),
+      routes: {
+        route.ROOM: (context) => RoomPage(),
+        route.JOGO: (context) => JogoPage(),
+      },
     );
   }
 }

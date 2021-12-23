@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:jogodavelha/controllers/jogo_controller.dart';
 
 class JogadoresComponents extends StatefulWidget {
-  const JogadoresComponents({Key? key}) : super(key: key);
+  final JogoController jogoController;
+  const JogadoresComponents({
+    Key? key,
+    required this.jogoController,
+  }) : super(key: key);
 
   @override
   _JogadoresComponentsState createState() => _JogadoresComponentsState();
@@ -22,7 +27,7 @@ class _JogadoresComponentsState extends State<JogadoresComponents> {
                 size: 36,
               ),
             ),
-            Text('Apelido Jogador 1'),
+            Text(widget.jogoController.nomeJogador1),
           ],
         ),
         Column(

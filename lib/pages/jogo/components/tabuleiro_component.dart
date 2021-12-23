@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:jogodavelha/controllers/jogo_controller.dart';
 import 'package:jogodavelha/pages/jogo/components/celula_component.dart';
 
 class TabuleiroComponent extends StatefulWidget {
-  const TabuleiroComponent({Key? key}) : super(key: key);
+  final JogoController jogoController;
+  const TabuleiroComponent({
+    Key? key,
+    required this.jogoController,
+  }) : super(key: key);
 
   @override
   _TabuleiroComponentState createState() => _TabuleiroComponentState();
