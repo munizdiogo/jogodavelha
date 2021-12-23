@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jogodavelha/pages/jogo/components/jogadores_component.dart';
 import 'package:jogodavelha/pages/jogo/components/tabuleiro_component.dart';
 
 class JogoPage extends StatefulWidget {
@@ -19,35 +20,7 @@ class _JogoPageState extends State<JogoPage> {
           // color: Colors.amber,
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                        child: Icon(
-                          Icons.person,
-                          size: 36,
-                        ),
-                      ),
-                      Text('Apelido Jogador 1'),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                        child: Icon(
-                          Icons.person,
-                          size: 36,
-                        ),
-                      ),
-                      Text('Apelido Jogador 2'),
-                    ],
-                  ),
-                ],
-              ),
+              JogadoresComponents(),
               SizedBox(height: 50),
               TabuleiroComponent()
             ],

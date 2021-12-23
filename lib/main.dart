@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jogodavelha/pages/jogo/jogo_page.dart';
 
+import 'pages/room/room_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const JogoPage(),
+      home: const RoomPage(),
       darkTheme: ThemeData.dark(),
     );
   }
