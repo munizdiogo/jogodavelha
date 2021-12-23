@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:jogodavelha/controllers/player_model.dart';
-import 'package:jogodavelha/pages/jogo/components/celula_component.dart';
+import 'package:jogodavelha/pages/jogo/components/square_component.dart';
 
-class TabuleiroComponent extends StatefulWidget {
+class BoardComponent extends StatefulWidget {
   final PlayerModel playerModel;
-  const TabuleiroComponent({
+  const BoardComponent({
     Key? key,
     required this.playerModel,
   }) : super(key: key);
 
   @override
-  _TabuleiroComponentState createState() => _TabuleiroComponentState();
+  _BoardComponentState createState() => _BoardComponentState();
 }
 
-class _TabuleiroComponentState extends State<TabuleiroComponent>
+class _BoardComponentState extends State<BoardComponent>
     with TickerProviderStateMixin {
   bool startGame = true;
   bool isFinished = false;
@@ -75,25 +75,25 @@ class _TabuleiroComponentState extends State<TabuleiroComponent>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CelularComponent(
+                      SquareComponent(
                         id: 'a1',
                         playerModel: widget.playerModel,
-                        marcador: 'X',
-                        colorMarcador: widget.playerModel.colorJogador1,
+                        tag: 'X',
+                        colorTag: widget.playerModel.colorJogador1,
                       ),
                       Container(height: 110, width: 4, color: colorLine),
-                      CelularComponent(
+                      SquareComponent(
                         id: 'a2',
                         playerModel: widget.playerModel,
-                        marcador: 'X',
-                        colorMarcador: widget.playerModel.colorJogador1,
+                        tag: 'X',
+                        colorTag: widget.playerModel.colorJogador1,
                       ),
                       Container(height: 110, width: 4, color: colorLine),
-                      CelularComponent(
+                      SquareComponent(
                         id: 'a3',
                         playerModel: widget.playerModel,
-                        marcador: 'X',
-                        colorMarcador: widget.playerModel.colorJogador1,
+                        tag: 'X',
+                        colorTag: widget.playerModel.colorJogador1,
                       ),
                     ],
                   ),
@@ -106,27 +106,27 @@ class _TabuleiroComponentState extends State<TabuleiroComponent>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CelularComponent(
+                      SquareComponent(
                         id: 'b1',
                         playerModel: widget.playerModel,
-                        marcador: 'X',
-                        colorMarcador: widget.playerModel.colorJogador1,
+                        tag: 'X',
+                        colorTag: widget.playerModel.colorJogador1,
                       ),
                       Container(height: 110, width: 4, color: colorLine),
-                      CelularComponent(
+                      SquareComponent(
                         id: 'b2',
                         playerModel: widget.playerModel,
-                        marcador: widget.playerModel.b2 ?? '',
-                        colorMarcador: widget.playerModel.b2 == 'player2'
+                        tag: widget.playerModel.b2 ?? '',
+                        colorTag: widget.playerModel.b2 == 'player2'
                             ? widget.playerModel.colorJogador2
                             : widget.playerModel.colorJogador1,
                       ),
                       Container(height: 110, width: 4, color: colorLine),
-                      CelularComponent(
+                      SquareComponent(
                         id: 'b3',
                         playerModel: widget.playerModel,
-                        marcador: 'X',
-                        colorMarcador: widget.playerModel.colorJogador1,
+                        tag: 'X',
+                        colorTag: widget.playerModel.colorJogador1,
                       ),
                     ],
                   ),
@@ -134,25 +134,25 @@ class _TabuleiroComponentState extends State<TabuleiroComponent>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CelularComponent(
+                      SquareComponent(
                         id: 'c1',
                         playerModel: widget.playerModel,
-                        marcador: 'X',
-                        colorMarcador: widget.playerModel.colorJogador1,
+                        tag: 'X',
+                        colorTag: widget.playerModel.colorJogador1,
                       ),
                       Container(height: 110, width: 4, color: colorLine),
-                      CelularComponent(
+                      SquareComponent(
                         id: 'c2',
                         playerModel: widget.playerModel,
-                        marcador: 'X',
-                        colorMarcador: widget.playerModel.colorJogador1,
+                        tag: 'X',
+                        colorTag: widget.playerModel.colorJogador1,
                       ),
                       Container(height: 110, width: 4, color: colorLine),
-                      CelularComponent(
+                      SquareComponent(
                         id: 'c3',
                         playerModel: widget.playerModel,
-                        marcador: 'X',
-                        colorMarcador: widget.playerModel.colorJogador1,
+                        tag: 'X',
+                        colorTag: widget.playerModel.colorJogador1,
                       ),
                     ],
                   ),

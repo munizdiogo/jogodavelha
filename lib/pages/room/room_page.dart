@@ -158,7 +158,7 @@ class _RoomPageState extends State<RoomPage> {
                   );
                   Navigator.pushReplacementNamed(
                     context,
-                    route.JOGO,
+                    route.GAME,
                     arguments: playerModel,
                   );
                 }

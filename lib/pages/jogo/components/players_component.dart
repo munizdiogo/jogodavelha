@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:jogodavelha/controllers/player_model.dart';
 
-class JogadoresComponents extends StatefulWidget {
+class PlayersComponents extends StatefulWidget {
   final PlayerModel playerModel;
-  const JogadoresComponents({
+  const PlayersComponents({
     Key? key,
     required this.playerModel,
   }) : super(key: key);
 
   @override
-  _JogadoresComponentsState createState() => _JogadoresComponentsState();
+  _PlayersComponentsState createState() => _PlayersComponentsState();
 }
 
-class _JogadoresComponentsState extends State<JogadoresComponents> {
+class _PlayersComponentsState extends State<PlayersComponents> {
   @override
   Widget build(BuildContext context) {
     return Row(
