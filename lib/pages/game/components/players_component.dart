@@ -25,7 +25,7 @@ class _PlayersComponentsState extends State<PlayersComponents> {
               child: Icon(
                 Icons.person,
                 size: 36,
-                color: widget.playerModel.colorJogador1,
+                color: widget.playerModel.colorPlayer1,
               ),
             ),
             Padding(
@@ -33,7 +33,7 @@ class _PlayersComponentsState extends State<PlayersComponents> {
               child: Text(
                 widget.playerModel.namePlayer1,
                 style: TextStyle(
-                  color: widget.playerModel.colorJogador1,
+                  color: widget.playerModel.colorPlayer1,
                   fontSize: 16,
                 ),
               ),
@@ -47,7 +47,7 @@ class _PlayersComponentsState extends State<PlayersComponents> {
               child: Icon(
                 Icons.person,
                 size: 36,
-                color: widget.playerModel.colorJogador2,
+                color: widget.playerModel.colorPlayer2,
               ),
             ),
             SizedBox(height: 4),
@@ -56,7 +56,7 @@ class _PlayersComponentsState extends State<PlayersComponents> {
               child: Text(
                 widget.playerModel.namePlayer2 ?? 'Jogador 2',
                 style: TextStyle(
-                  color: widget.playerModel.colorJogador2,
+                  color: widget.playerModel.colorPlayer2,
                   fontSize: 16,
                 ),
               ),

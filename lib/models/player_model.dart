@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class PlayerModel {
   final String namePlayer1;
-  final Color colorJogador1;
+  final Color colorPlayer1;
+  final String tagPlayer1;
   final String? namePlayer2;
-  final Color colorJogador2;
+  final Color colorPlayer2;
+  final String tagPlayer2;
   final bool gameFinished;
   final String? a1;
   final String? a2;
@@ -17,6 +19,8 @@ class PlayerModel {
   final String? c3;
 
   PlayerModel({
+    this.tagPlayer1 = 'X',
+    this.tagPlayer2 = 'O',
     this.gameFinished = false,
     this.a1,
     this.a2,
@@ -28,8 +32,8 @@ class PlayerModel {
     this.c2,
     this.c3,
     required this.namePlayer1,
-    this.colorJogador1 = Colors.white,
+    this.colorPlayer1 = Colors.white,
     this.namePlayer2,
-    this.colorJogador2 = Colors.black,
+    this.colorPlayer2 = Colors.black,
   });
 }
