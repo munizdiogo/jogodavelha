@@ -22,21 +22,13 @@ class _RoomPageState extends State<RoomPage> {
   }
 
   Color getColorSelected(String color) {
-    switch (color) {
-      case 'purple':
-        return Colors.purple;
-      case 'amber':
-        return Colors.amber;
-      case 'pink':
-        return Colors.pink;
-      case 'cyan':
-        return Colors.cyan;
-      case 'deepOrange':
-        return Colors.deepOrange;
-      case 'green':
-        return Colors.green.shade800;
-    }
-    return Colors.white;
+    var mapColor = Constantes.mapColors[color];
+    return mapColor ?? Colors.white;
+  }
+
+  String getNameColorSelected(String color) {
+    var mapColor = Constantes.mapNameColors[color];
+    return mapColor ?? 'white';
   }
 
   double getSizeCircle(String color) {
@@ -80,67 +72,67 @@ class _RoomPageState extends State<RoomPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: () => toggleColor('purple'),
+                    onTap: () => toggleColor('color1'),
                     child: ClipOval(
                       child: AnimatedContainer(
-                        color: getColorSelected('purple'),
-                        height: getSizeCircle('purple'),
-                        width: getSizeCircle('purple'),
+                        color: getColorSelected('color1'),
+                        height: getSizeCircle('color1'),
+                        width: getSizeCircle('color1'),
                         duration: const Duration(milliseconds: 300),
                       ),
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => toggleColor('amber'),
+                    onTap: () => toggleColor('color2'),
                     child: ClipOval(
                       child: AnimatedContainer(
-                        color: getColorSelected('amber'),
-                        height: getSizeCircle('amber'),
-                        width: getSizeCircle('amber'),
+                        color: getColorSelected('color2'),
+                        height: getSizeCircle('color2'),
+                        width: getSizeCircle('color2'),
                         duration: const Duration(milliseconds: 300),
                       ),
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => toggleColor('pink'),
+                    onTap: () => toggleColor('color3'),
                     child: ClipOval(
                       child: AnimatedContainer(
-                        color: getColorSelected('pink'),
-                        height: getSizeCircle('pink'),
-                        width: getSizeCircle('pink'),
+                        color: getColorSelected('color3'),
+                        height: getSizeCircle('color3'),
+                        width: getSizeCircle('color3'),
                         duration: const Duration(milliseconds: 300),
                       ),
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => toggleColor('cyan'),
+                    onTap: () => toggleColor('color4'),
                     child: ClipOval(
                       child: AnimatedContainer(
-                        color: getColorSelected('cyan'),
-                        height: getSizeCircle('cyan'),
-                        width: getSizeCircle('cyan'),
+                        color: getColorSelected('color4'),
+                        height: getSizeCircle('color4'),
+                        width: getSizeCircle('color4'),
                         duration: const Duration(milliseconds: 300),
                       ),
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => toggleColor('deepOrange'),
+                    onTap: () => toggleColor('color5'),
                     child: ClipOval(
                       child: AnimatedContainer(
-                        color: getColorSelected('deepOrange'),
-                        height: getSizeCircle('deepOrange'),
-                        width: getSizeCircle('deepOrange'),
+                        color: getColorSelected('color5'),
+                        height: getSizeCircle('color5'),
+                        width: getSizeCircle('color5'),
                         duration: const Duration(milliseconds: 300),
                       ),
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => toggleColor('green'),
+                    onTap: () => toggleColor('color6'),
                     child: ClipOval(
                       child: AnimatedContainer(
-                        color: getColorSelected('green'),
-                        height: getSizeCircle('green'),
-                        width: getSizeCircle('green'),
+                        color: getColorSelected('color6'),
+                        height: getSizeCircle('color6'),
+                        width: getSizeCircle('color6'),
                         duration: const Duration(milliseconds: 300),
                       ),
                     ),
@@ -164,7 +156,7 @@ class _RoomPageState extends State<RoomPage> {
                 } else {
                   jogoController = JogoController(
                     nomeJogador1: textEditingController.text,
-                    corJogador1: Colors.purpleAccent,
+                    corJogador1: getColorSelected(colorSelected),
                   );
                   Navigator.pushReplacementNamed(
                     context,
