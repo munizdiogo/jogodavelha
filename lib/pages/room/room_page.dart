@@ -45,10 +45,8 @@ class _RoomPageState extends State<RoomPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Image.network(
-            //   "http://pa1.narvii.com/6841/c3a294729b51aca6a3f04a77defef886d703e205_00.gif",
-            // ),
             Image.network(
+              // "https://pa1.narvii.com/6894/1a24b202230db33325774bc588db9e172a1c4947r1-450-306_hq.gif",
               "https://static.wikia.nocookie.net/coragem/images/9/95/Muriel.png/revision/latest/top-crop/width/360/height/450?cb=20130423151854&path-prefix=pt-br",
               width: 200,
             ),
@@ -146,7 +144,7 @@ class _RoomPageState extends State<RoomPage> {
                 if (textEditingController.text.isEmpty) {
                   showMessageValidation(
                     context: context,
-                    text: 'Digite seu nome ou apelido',
+                    text: 'Digite seu apelido',
                   );
                 } else if (colorSelected == '') {
                   showMessageValidation(
@@ -168,7 +166,7 @@ class _RoomPageState extends State<RoomPage> {
               },
               child: const Padding(
                 padding: EdgeInsets.all(8.0),
-                child: Text("Criar jogo"),
+                child: Text("Jogar"),
               ),
             )
           ],

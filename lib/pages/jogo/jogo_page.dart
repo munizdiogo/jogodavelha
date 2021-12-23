@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jogodavelha/controllers/jogo_controller.dart';
 import 'package:jogodavelha/pages/jogo/components/jogadores_component.dart';
 import 'package:jogodavelha/pages/jogo/components/tabuleiro_component.dart';
+import 'package:jogodavelha/routes/routes.dart' as route;
 
 class JogoPage extends StatefulWidget {
   const JogoPage({Key? key}) : super(key: key);
@@ -22,10 +23,16 @@ class _JogoPageState extends State<JogoPage> {
           padding: EdgeInsets.all(16),
           // color: Colors.amber,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               JogadoresComponents(jogoController: jogoController),
-              SizedBox(height: 50),
-              TabuleiroComponent(jogoController: jogoController)
+              TabuleiroComponent(jogoController: jogoController),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushReplacementNamed(route.ROOM);
+                },
+                child: Text('Sair do jogo'),
+              ),
             ],
           ),
         ),
