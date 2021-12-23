@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jogodavelha/controllers/player_model.dart';
+import 'package:jogodavelha/models/player_model.dart';
 
 class SquareComponent extends StatefulWidget {
   final String id;

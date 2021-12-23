@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jogodavelha/pages/jogo/game_page.dart';
+import 'package:jogodavelha/pages/game/game_page.dart';
 import 'package:jogodavelha/routes/routes.dart' as route;
 
 import 'pages/room/room_page.dart';

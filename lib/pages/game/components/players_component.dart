@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jogodavelha/controllers/player_model.dart';
+import 'package:jogodavelha/models/player_model.dart';
 
 class PlayersComponents extends StatefulWidget {
   final PlayerModel playerModel;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jogodavelha/controllers/player_model.dart';
-import 'package:jogodavelha/pages/jogo/components/square_component.dart';
+import 'package:jogodavelha/models/player_model.dart';
+import 'package:jogodavelha/pages/game/components/square_component.dart';
 
 class BoardComponent extends StatefulWidget {
   final PlayerModel playerModel;

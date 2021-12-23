@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jogodavelha/controllers/player_model.dart';
-import 'package:jogodavelha/pages/jogo/components/players_component.dart';
-import 'package:jogodavelha/pages/jogo/components/board_component.dart';
+import 'package:jogodavelha/models/player_model.dart';
+import 'package:jogodavelha/pages/game/components/players_component.dart';
+import 'package:jogodavelha/pages/game/components/board_component.dart';
 import 'package:jogodavelha/routes/routes.dart' as route;
 
 class GamePage extends StatefulWidget {

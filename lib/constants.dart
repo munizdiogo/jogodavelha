@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Constantes {
+class Constants {
   static double sizeBigCircleColor = 32;
   static double sizeSmallCircleColor = 16;
 

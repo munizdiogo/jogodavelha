@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jogodavelha/constantes.dart';
-import 'package:jogodavelha/controllers/player_model.dart';
+import 'package:jogodavelha/constants.dart';
+import 'package:jogodavelha/models/player_model.dart';
 import 'package:jogodavelha/routes/routes.dart' as route;
 
 class RoomPage extends StatefulWidget {
@@ -22,19 +22,19 @@ class _RoomPageState extends State<RoomPage> {
   }
 
   Color getColorSelected(String color) {
-    var mapColor = Constantes.mapColors[color];
+    var mapColor = Constants.mapColors[color];
     return mapColor ?? Colors.white;
   }
 
   String getNameColorSelected(String color) {
-    var mapColor = Constantes.mapNameColors[color];
+    var mapColor = Constants.mapNameColors[color];
     return mapColor ?? 'white';
   }
 
   double getSizeCircle(String color) {
     return color == colorSelected
-        ? Constantes.sizeBigCircleColor
-        : Constantes.sizeSmallCircleColor;
+        ? Constants.sizeBigCircleColor
+        : Constants.sizeSmallCircleColor;
   }
 
   @override
