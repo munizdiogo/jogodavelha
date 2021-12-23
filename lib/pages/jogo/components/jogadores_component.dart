@@ -25,9 +25,19 @@ class _JogadoresComponentsState extends State<JogadoresComponents> {
               child: Icon(
                 Icons.person,
                 size: 36,
+                color: widget.jogoController.corJogador1,
               ),
             ),
-            Text(widget.jogoController.nomeJogador1),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Text(
+                widget.jogoController.nomeJogador1,
+                style: TextStyle(
+                  color: widget.jogoController.corJogador1,
+                  fontSize: 16,
+                ),
+              ),
+            ),
           ],
         ),
         Column(
@@ -37,9 +47,22 @@ class _JogadoresComponentsState extends State<JogadoresComponents> {
               child: Icon(
                 Icons.person,
                 size: 36,
+                color: widget.jogoController.corJogador2 ??
+                    Theme.of(context).textSelectionTheme.selectionColor,
               ),
             ),
-            Text('Apelido Jogador 2'),
+            SizedBox(height: 4),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Text(
+                widget.jogoController.nomeJogador2 ?? 'Jogador 2',
+                style: TextStyle(
+                  color: widget.jogoController.corJogador2 ??
+                      Theme.of(context).textSelectionTheme.selectionColor,
+                  fontSize: 16,
+                ),
+              ),
+            ),
           ],
         ),
       ],

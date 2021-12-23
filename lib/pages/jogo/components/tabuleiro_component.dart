@@ -72,7 +72,7 @@ class _TabuleiroComponentState extends State<TabuleiroComponent> {
                   Container(height: 110, width: 4, color: colorLine),
                   CelularComponent(
                     id: 'b2',
-                    marcador: 'X',
+                    marcador: 'O',
                     colorMarcador: Colors.lightBlue,
                   ),
                   Container(height: 110, width: 4, color: colorLine),

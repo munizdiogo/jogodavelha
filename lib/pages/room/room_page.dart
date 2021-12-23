@@ -25,12 +25,13 @@ class _RoomPageState extends State<RoomPage> {
               "https://cdn.pixabay.com/photo/2019/05/06/18/49/mother-4183895_960_720.png",
               width: 200,
             ),
-            Text('Jogo da velha'),
+            Text('Jogo da Velha'),
             SizedBox(height: 50),
             Container(
               width: 300,
               child: TextFormField(
                 controller: textEditingController,
+                textAlign: TextAlign.center,
                 decoration: InputDecoration(
                   hintText: 'Nome ou Apelido',
                 ),
