@@ -10,8 +10,9 @@ class RoomPage extends StatefulWidget {
 }
 
 class _RoomPageState extends State<RoomPage> {
-  TextEditingController textEditingController = TextEditingController();
   late JogoController jogoController;
+  TextEditingController textEditingController = TextEditingController();
+  String corSelected = '';
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +22,11 @@ class _RoomPageState extends State<RoomPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Image.network(
+            //   "http://pa1.narvii.com/6841/c3a294729b51aca6a3f04a77defef886d703e205_00.gif",
+            // ),
             Image.network(
-              "https://cdn.pixabay.com/photo/2019/05/06/18/49/mother-4183895_960_720.png",
+              "https://static.wikia.nocookie.net/coragem/images/9/95/Muriel.png/revision/latest/top-crop/width/360/height/450?cb=20130423151854&path-prefix=pt-br",
               width: 200,
             ),
             Text('Jogo da Velha'),
@@ -37,22 +41,50 @@ class _RoomPageState extends State<RoomPage> {
                 ),
               ),
             ),
+            SizedBox(height: 20),
+            Container(
+              width: 300,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ClipOval(
+                    child:
+                        Container(color: Colors.purple, height: 32, width: 32),
+                  ),
+                  ClipOval(
+                    child:
+                        Container(color: Colors.amber, height: 32, width: 32),
+                  ),
+                  ClipOval(
+                    child: Container(color: Colors.pink, height: 32, width: 32),
+                  ),
+                  ClipOval(
+                    child: Container(color: Colors.cyan, height: 32, width: 32),
+                  ),
+                  ClipOval(
+                    child: Container(
+                        color: Colors.deepOrange, height: 32, width: 32),
+                  ),
+                  ClipOval(
+                    child: Container(
+                        color: Colors.green.shade800, height: 32, width: 32),
+                  ),
+                ],
+              ),
+            ),
             SizedBox(height: 50),
             ElevatedButton(
               onPressed: () {
-                final snackBar = SnackBar(
-                  backgroundColor: Colors.red,
-                  content: const Text('Digite seu nome ou apelido'),
-                  action: SnackBarAction(
-                    textColor: Colors.black45,
-                    label: 'X',
-                    onPressed: () {
-                      // Some code to undo the change.
-                    },
-                  ),
-                );
                 if (textEditingController.text.isEmpty) {
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  showMessageValidation(
+                    context: context,
+                    text: 'Digite seu nome ou apelido',
+                  );
+                } else if (corSelected == '') {
+                  showMessageValidation(
+                    context: context,
+                    text: 'Escolha uma cor',
+                  );
                 } else {
                   jogoController = JogoController(
                     nomeJogador1: textEditingController.text,
@@ -66,11 +98,34 @@ class _RoomPageState extends State<RoomPage> {
                 }
                 print(textEditingController.text);
               },
-              child: Text("Criar jogo"),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Criar jogo"),
+              ),
             )
           ],
         ),
       ),
     );
   }
+}
+
+void showMessageValidation({required context, required text}) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    snackBarValidationComponent(text: text),
+  );
+}
+
+SnackBar snackBarValidationComponent({String text = ''}) {
+  return SnackBar(
+    backgroundColor: Colors.red,
+    content: Text(text),
+    action: SnackBarAction(
+      textColor: Colors.black45,
+      label: 'X',
+      onPressed: () {
+        // Some code to undo the change.
+      },
+    ),
+  );
 }
