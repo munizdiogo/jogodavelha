@@ -21,6 +21,30 @@ class _RoomPageState extends State<RoomPage> {
     });
   }
 
+  Color getColorSelected(String color) {
+    switch (color) {
+      case 'purple':
+        return Colors.purple;
+      case 'amber':
+        return Colors.amber;
+      case 'pink':
+        return Colors.pink;
+      case 'cyan':
+        return Colors.cyan;
+      case 'deepOrange':
+        return Colors.deepOrange;
+      case 'green':
+        return Colors.green.shade800;
+    }
+    return Colors.white;
+  }
+
+  double getSizeCircle(String color) {
+    return color == colorSelected
+        ? Constantes.sizeBigCircleColor
+        : Constantes.sizeSmallCircleColor;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,20 +60,21 @@ class _RoomPageState extends State<RoomPage> {
               "https://static.wikia.nocookie.net/coragem/images/9/95/Muriel.png/revision/latest/top-crop/width/360/height/450?cb=20130423151854&path-prefix=pt-br",
               width: 200,
             ),
-            Text('Jogo da Velha'),
-            SizedBox(height: 50),
-            Container(
+            const Text('Jogo da Velha'),
+            const SizedBox(height: 50),
+            SizedBox(
               width: 300,
               child: TextFormField(
                 controller: textEditingController,
                 textAlign: TextAlign.center,
+                // ignore: prefer_const_constructors
                 decoration: InputDecoration(
                   hintText: 'Digite aqui seu apelido',
                 ),
               ),
             ),
-            SizedBox(height: 20),
-            Container(
+            const SizedBox(height: 20),
+            SizedBox(
               width: 300,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,14 +83,10 @@ class _RoomPageState extends State<RoomPage> {
                     onTap: () => toggleColor('purple'),
                     child: ClipOval(
                       child: AnimatedContainer(
-                        color: Colors.purple,
-                        height: colorSelected == 'purple'
-                            ? Constantes.sizeBigCircleColor
-                            : Constantes.sizeSmallCircleColor,
-                        width: colorSelected == 'purple'
-                            ? Constantes.sizeBigCircleColor
-                            : Constantes.sizeSmallCircleColor,
-                        duration: Duration(milliseconds: 300),
+                        color: getColorSelected('purple'),
+                        height: getSizeCircle('purple'),
+                        width: getSizeCircle('purple'),
+                        duration: const Duration(milliseconds: 300),
                       ),
                     ),
                   ),
@@ -73,14 +94,10 @@ class _RoomPageState extends State<RoomPage> {
                     onTap: () => toggleColor('amber'),
                     child: ClipOval(
                       child: AnimatedContainer(
-                        color: Colors.amber,
-                        height: colorSelected == 'amber'
-                            ? Constantes.sizeBigCircleColor
-                            : Constantes.sizeSmallCircleColor,
-                        width: colorSelected == 'amber'
-                            ? Constantes.sizeBigCircleColor
-                            : Constantes.sizeSmallCircleColor,
-                        duration: Duration(milliseconds: 300),
+                        color: getColorSelected('amber'),
+                        height: getSizeCircle('amber'),
+                        width: getSizeCircle('amber'),
+                        duration: const Duration(milliseconds: 300),
                       ),
                     ),
                   ),
@@ -88,14 +105,10 @@ class _RoomPageState extends State<RoomPage> {
                     onTap: () => toggleColor('pink'),
                     child: ClipOval(
                       child: AnimatedContainer(
-                        color: Colors.pink,
-                        height: colorSelected == 'pink'
-                            ? Constantes.sizeBigCircleColor
-                            : Constantes.sizeSmallCircleColor,
-                        width: colorSelected == 'pink'
-                            ? Constantes.sizeBigCircleColor
-                            : Constantes.sizeSmallCircleColor,
-                        duration: Duration(milliseconds: 300),
+                        color: getColorSelected('pink'),
+                        height: getSizeCircle('pink'),
+                        width: getSizeCircle('pink'),
+                        duration: const Duration(milliseconds: 300),
                       ),
                     ),
                   ),
@@ -103,14 +116,10 @@ class _RoomPageState extends State<RoomPage> {
                     onTap: () => toggleColor('cyan'),
                     child: ClipOval(
                       child: AnimatedContainer(
-                        color: Colors.cyan,
-                        height: colorSelected == 'cyan'
-                            ? Constantes.sizeBigCircleColor
-                            : Constantes.sizeSmallCircleColor,
-                        width: colorSelected == 'cyan'
-                            ? Constantes.sizeBigCircleColor
-                            : Constantes.sizeSmallCircleColor,
-                        duration: Duration(milliseconds: 300),
+                        color: getColorSelected('cyan'),
+                        height: getSizeCircle('cyan'),
+                        width: getSizeCircle('cyan'),
+                        duration: const Duration(milliseconds: 300),
                       ),
                     ),
                   ),
@@ -118,14 +127,10 @@ class _RoomPageState extends State<RoomPage> {
                     onTap: () => toggleColor('deepOrange'),
                     child: ClipOval(
                       child: AnimatedContainer(
-                        color: Colors.deepOrange,
-                        height: colorSelected == 'deepOrange'
-                            ? Constantes.sizeBigCircleColor
-                            : Constantes.sizeSmallCircleColor,
-                        width: colorSelected == 'deepOrange'
-                            ? Constantes.sizeBigCircleColor
-                            : Constantes.sizeSmallCircleColor,
-                        duration: Duration(milliseconds: 300),
+                        color: getColorSelected('deepOrange'),
+                        height: getSizeCircle('deepOrange'),
+                        width: getSizeCircle('deepOrange'),
+                        duration: const Duration(milliseconds: 300),
                       ),
                     ),
                   ),
@@ -133,21 +138,17 @@ class _RoomPageState extends State<RoomPage> {
                     onTap: () => toggleColor('green'),
                     child: ClipOval(
                       child: AnimatedContainer(
-                        color: Colors.green.shade800,
-                        height: colorSelected == 'green'
-                            ? Constantes.sizeBigCircleColor
-                            : Constantes.sizeSmallCircleColor,
-                        width: colorSelected == 'green'
-                            ? Constantes.sizeBigCircleColor
-                            : Constantes.sizeSmallCircleColor,
-                        duration: Duration(milliseconds: 300),
+                        color: getColorSelected('green'),
+                        height: getSizeCircle('green'),
+                        width: getSizeCircle('green'),
+                        duration: const Duration(milliseconds: 300),
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             ElevatedButton(
               onPressed: () {
                 if (textEditingController.text.isEmpty) {
@@ -173,8 +174,8 @@ class _RoomPageState extends State<RoomPage> {
                 }
                 print(textEditingController.text);
               },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Text("Criar jogo"),
               ),
             )
