@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jogodavelha/controllers/jogo_controller.dart';
+import 'package:jogodavelha/controllers/player_model.dart';
 
 class CelularComponent extends StatefulWidget {
   final String id;

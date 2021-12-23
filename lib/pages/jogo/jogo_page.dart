@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jogodavelha/controllers/jogo_controller.dart';
+import 'package:jogodavelha/controllers/player_model.dart';
 import 'package:jogodavelha/pages/jogo/components/jogadores_component.dart';
 import 'package:jogodavelha/pages/jogo/components/tabuleiro_component.dart';
 import 'package:jogodavelha/routes/routes.dart' as route;
