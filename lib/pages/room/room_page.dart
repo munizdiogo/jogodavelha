@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jogodavelha/constantes.dart';
 import 'package:jogodavelha/controllers/jogo_controller.dart';
 import 'package:jogodavelha/routes/routes.dart' as route;
 
@@ -12,7 +13,13 @@ class RoomPage extends StatefulWidget {
 class _RoomPageState extends State<RoomPage> {
   late JogoController jogoController;
   TextEditingController textEditingController = TextEditingController();
-  String corSelected = '';
+  String colorSelected = '';
+
+  void toggleColor(String color) {
+    setState(() {
+      colorSelected = color;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +44,7 @@ class _RoomPageState extends State<RoomPage> {
                 controller: textEditingController,
                 textAlign: TextAlign.center,
                 decoration: InputDecoration(
-                  hintText: 'Nome ou Apelido',
+                  hintText: 'Digite aqui seu apelido',
                 ),
               ),
             ),
@@ -47,27 +54,95 @@ class _RoomPageState extends State<RoomPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ClipOval(
-                    child:
-                        Container(color: Colors.purple, height: 32, width: 32),
+                  GestureDetector(
+                    onTap: () => toggleColor('purple'),
+                    child: ClipOval(
+                      child: AnimatedContainer(
+                        color: Colors.purple,
+                        height: colorSelected == 'purple'
+                            ? Constantes.sizeBigCircleColor
+                            : Constantes.sizeSmallCircleColor,
+                        width: colorSelected == 'purple'
+                            ? Constantes.sizeBigCircleColor
+                            : Constantes.sizeSmallCircleColor,
+                        duration: Duration(milliseconds: 300),
+                      ),
+                    ),
                   ),
-                  ClipOval(
-                    child:
-                        Container(color: Colors.amber, height: 32, width: 32),
+                  GestureDetector(
+                    onTap: () => toggleColor('amber'),
+                    child: ClipOval(
+                      child: AnimatedContainer(
+                        color: Colors.amber,
+                        height: colorSelected == 'amber'
+                            ? Constantes.sizeBigCircleColor
+                            : Constantes.sizeSmallCircleColor,
+                        width: colorSelected == 'amber'
+                            ? Constantes.sizeBigCircleColor
+                            : Constantes.sizeSmallCircleColor,
+                        duration: Duration(milliseconds: 300),
+                      ),
+                    ),
                   ),
-                  ClipOval(
-                    child: Container(color: Colors.pink, height: 32, width: 32),
+                  GestureDetector(
+                    onTap: () => toggleColor('pink'),
+                    child: ClipOval(
+                      child: AnimatedContainer(
+                        color: Colors.pink,
+                        height: colorSelected == 'pink'
+                            ? Constantes.sizeBigCircleColor
+                            : Constantes.sizeSmallCircleColor,
+                        width: colorSelected == 'pink'
+                            ? Constantes.sizeBigCircleColor
+                            : Constantes.sizeSmallCircleColor,
+                        duration: Duration(milliseconds: 300),
+                      ),
+                    ),
                   ),
-                  ClipOval(
-                    child: Container(color: Colors.cyan, height: 32, width: 32),
+                  GestureDetector(
+                    onTap: () => toggleColor('cyan'),
+                    child: ClipOval(
+                      child: AnimatedContainer(
+                        color: Colors.cyan,
+                        height: colorSelected == 'cyan'
+                            ? Constantes.sizeBigCircleColor
+                            : Constantes.sizeSmallCircleColor,
+                        width: colorSelected == 'cyan'
+                            ? Constantes.sizeBigCircleColor
+                            : Constantes.sizeSmallCircleColor,
+                        duration: Duration(milliseconds: 300),
+                      ),
+                    ),
                   ),
-                  ClipOval(
-                    child: Container(
-                        color: Colors.deepOrange, height: 32, width: 32),
+                  GestureDetector(
+                    onTap: () => toggleColor('deepOrange'),
+                    child: ClipOval(
+                      child: AnimatedContainer(
+                        color: Colors.deepOrange,
+                        height: colorSelected == 'deepOrange'
+                            ? Constantes.sizeBigCircleColor
+                            : Constantes.sizeSmallCircleColor,
+                        width: colorSelected == 'deepOrange'
+                            ? Constantes.sizeBigCircleColor
+                            : Constantes.sizeSmallCircleColor,
+                        duration: Duration(milliseconds: 300),
+                      ),
+                    ),
                   ),
-                  ClipOval(
-                    child: Container(
-                        color: Colors.green.shade800, height: 32, width: 32),
+                  GestureDetector(
+                    onTap: () => toggleColor('green'),
+                    child: ClipOval(
+                      child: AnimatedContainer(
+                        color: Colors.green.shade800,
+                        height: colorSelected == 'green'
+                            ? Constantes.sizeBigCircleColor
+                            : Constantes.sizeSmallCircleColor,
+                        width: colorSelected == 'green'
+                            ? Constantes.sizeBigCircleColor
+                            : Constantes.sizeSmallCircleColor,
+                        duration: Duration(milliseconds: 300),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -80,7 +155,7 @@ class _RoomPageState extends State<RoomPage> {
                     context: context,
                     text: 'Digite seu nome ou apelido',
                   );
-                } else if (corSelected == '') {
+                } else if (colorSelected == '') {
                   showMessageValidation(
                     context: context,
                     text: 'Escolha uma cor',
