@@ -25,15 +25,15 @@ class _JogadoresComponentsState extends State<JogadoresComponents> {
               child: Icon(
                 Icons.person,
                 size: 36,
-                color: widget.playerModel.corJogador1,
+                color: widget.playerModel.colorJogador1,
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
-                widget.playerModel.nomeJogador1,
+                widget.playerModel.namePlayer1,
                 style: TextStyle(
-                  color: widget.playerModel.corJogador1,
+                  color: widget.playerModel.colorJogador1,
                   fontSize: 16,
                 ),
               ),
@@ -47,16 +47,16 @@ class _JogadoresComponentsState extends State<JogadoresComponents> {
               child: Icon(
                 Icons.person,
                 size: 36,
-                color: widget.playerModel.corJogador2,
+                color: widget.playerModel.colorJogador2,
               ),
             ),
             SizedBox(height: 4),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
-                widget.playerModel.nomeJogador2 ?? 'Jogador 2',
+                widget.playerModel.namePlayer2 ?? 'Jogador 2',
                 style: TextStyle(
-                  color: widget.playerModel.corJogador2,
+                  color: widget.playerModel.colorJogador2,
                   fontSize: 16,
                 ),
               ),
