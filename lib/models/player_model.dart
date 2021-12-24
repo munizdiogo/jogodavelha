@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+enum enumActivePlayer { PLAYER1, PLAYER2 }
+
 class PlayerModel {
+  enumActivePlayer activePlayer;
   final String namePlayer1;
   final Color colorPlayer1;
   final String tagPlayer1;
@@ -8,17 +11,18 @@ class PlayerModel {
   final Color colorPlayer2;
   final String tagPlayer2;
   final bool gameFinished;
-  final String? a1;
-  final String? a2;
-  final String? a3;
-  final String? b1;
-  final String? b2;
-  final String? b3;
-  final String? c1;
-  final String? c2;
-  final String? c3;
+  String? a1;
+  String? a2;
+  String? a3;
+  String? b1;
+  String? b2;
+  String? b3;
+  String? c1;
+  String? c2;
+  String? c3;
 
   PlayerModel({
+    required this.activePlayer,
     this.tagPlayer1 = 'X',
     this.tagPlayer2 = 'O',
     this.gameFinished = false,

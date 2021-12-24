@@ -25,11 +25,31 @@ class _GamePageState extends State<GamePage> {
             children: [
               PlayersComponents(playerModel: playerModel),
               BoardComponent(playerModel: playerModel),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pushReplacementNamed(route.ROOM);
-                },
-                child: Text('Sair do jogo'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pushReplacementNamed(route.ROOM);
+                    },
+                    child: Text('Sair do jogo'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        if (playerModel.activePlayer ==
+                            enumActivePlayer.PLAYER1) {
+                          playerModel.activePlayer = enumActivePlayer.PLAYER2;
+                        } else {
+                          playerModel.activePlayer = enumActivePlayer.PLAYER1;
+                        }
+
+                        print(playerModel.activePlayer);
+                      });
+                    },
+                    child: Text('Mudar Player'),
+                  ),
+                ],
               ),
             ],
           ),

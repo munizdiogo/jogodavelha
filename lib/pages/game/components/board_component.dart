@@ -78,22 +78,16 @@ class _BoardComponentState extends State<BoardComponent>
                       SquareComponent(
                         id: 'a1',
                         playerModel: widget.playerModel,
-                        tag: 'X',
-                        colorTag: widget.playerModel.colorPlayer1,
                       ),
                       Container(height: 110, width: 4, color: colorLine),
                       SquareComponent(
                         id: 'a2',
                         playerModel: widget.playerModel,
-                        tag: 'X',
-                        colorTag: widget.playerModel.colorPlayer1,
                       ),
                       Container(height: 110, width: 4, color: colorLine),
                       SquareComponent(
                         id: 'a3',
                         playerModel: widget.playerModel,
-                        tag: 'X',
-                        colorTag: widget.playerModel.colorPlayer1,
                       ),
                     ],
                   ),
@@ -109,24 +103,16 @@ class _BoardComponentState extends State<BoardComponent>
                       SquareComponent(
                         id: 'b1',
                         playerModel: widget.playerModel,
-                        tag: 'X',
-                        colorTag: widget.playerModel.colorPlayer1,
                       ),
                       Container(height: 110, width: 4, color: colorLine),
                       SquareComponent(
                         id: 'b2',
                         playerModel: widget.playerModel,
-                        tag: widget.playerModel.b2 ?? '',
-                        colorTag: widget.playerModel.b2 == 'player2'
-                            ? widget.playerModel.colorPlayer2
-                            : widget.playerModel.colorPlayer1,
                       ),
                       Container(height: 110, width: 4, color: colorLine),
                       SquareComponent(
                         id: 'b3',
                         playerModel: widget.playerModel,
-                        tag: 'X',
-                        colorTag: widget.playerModel.colorPlayer1,
                       ),
                     ],
                   ),
@@ -137,22 +123,16 @@ class _BoardComponentState extends State<BoardComponent>
                       SquareComponent(
                         id: 'c1',
                         playerModel: widget.playerModel,
-                        tag: 'X',
-                        colorTag: widget.playerModel.colorPlayer1,
                       ),
                       Container(height: 110, width: 4, color: colorLine),
                       SquareComponent(
                         id: 'c2',
                         playerModel: widget.playerModel,
-                        tag: 'X',
-                        colorTag: widget.playerModel.colorPlayer1,
                       ),
                       Container(height: 110, width: 4, color: colorLine),
                       SquareComponent(
                         id: 'c3',
                         playerModel: widget.playerModel,
-                        tag: 'X',
-                        colorTag: widget.playerModel.colorPlayer1,
                       ),
                     ],
                   ),
