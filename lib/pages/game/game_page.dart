@@ -19,7 +19,7 @@ class _GamePageState extends State<GamePage> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -32,7 +32,7 @@ class _GamePageState extends State<GamePage> {
                     onPressed: () {
                       Navigator.of(context).pushReplacementNamed(route.ROOM);
                     },
-                    child: Text('Sair do Jogo'),
+                    child: const Text('Sair do Jogo'),
                   ),
                   TextButton(
                     onPressed: () {
@@ -49,7 +49,7 @@ class _GamePageState extends State<GamePage> {
                         );
                       });
                     },
-                    child: Text('Reiniciar Jogo'),
+                    child: const Text('Reiniciar Jogo'),
                   ),
                   Row(
                     children: [
@@ -64,7 +64,7 @@ class _GamePageState extends State<GamePage> {
                             }
                           });
                         },
-                        child: Text('Mudar Jogador'),
+                        child: const Text('Mudar Jogador'),
                       ),
                       TextButton(
                         onPressed: () {

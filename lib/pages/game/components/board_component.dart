@@ -127,7 +127,6 @@ class _BoardComponentState extends State<BoardComponent>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     controllerLineFinish.dispose();
   }
@@ -143,12 +142,13 @@ class _BoardComponentState extends State<BoardComponent>
                 startGame = true;
               });
             },
+            // ignore: prefer_const_constructors
             child: Text(
               'Iniciar Jogo',
-              style: TextStyle(fontSize: 36),
+              style: const TextStyle(fontSize: 36),
             ),
           )
-        : Container(
+        : SizedBox(
             height: 500,
             width: 400,
             child: Stack(
@@ -183,7 +183,7 @@ class _BoardComponentState extends State<BoardComponent>
                       height: 4,
                       width: startGame ? 340 : 0,
                       color: colorLine,
-                      duration: Duration(seconds: 2),
+                      duration: const Duration(seconds: 2),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -238,7 +238,7 @@ class _BoardComponentState extends State<BoardComponent>
                     animation: controllerLineFinish,
                     builder: (context, child) {
                       return AnimatedRotation(
-                        duration: Duration(microseconds: 10),
+                        duration: const Duration(microseconds: 10),
                         turns: turnsRotationLine,
                         child: SizedBox(
                           child: Container(

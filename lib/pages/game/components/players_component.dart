@@ -50,7 +50,7 @@ class _PlayersComponentsState extends State<PlayersComponents> {
                 color: widget.playerModel.colorPlayer2,
               ),
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(

@@ -46,7 +46,6 @@ class _RoomPageState extends State<RoomPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.network(
-              // "https://pa1.narvii.com/6894/1a24b202230db33325774bc588db9e172a1c4947r1-450-306_hq.gif",
               "https://static.wikia.nocookie.net/coragem/images/9/95/Muriel.png/revision/latest/top-crop/width/360/height/450?cb=20130423151854&path-prefix=pt-br",
               width: 200,
             ),
@@ -162,7 +161,6 @@ class _RoomPageState extends State<RoomPage> {
                     arguments: playerModel,
                   );
                 }
-                print(textEditingController.text);
               },
               child: const Padding(
                 padding: EdgeInsets.all(8.0),
@@ -189,9 +187,7 @@ SnackBar snackBarValidationComponent({String text = ''}) {
     action: SnackBarAction(
       textColor: Colors.black45,
       label: 'X',
-      onPressed: () {
-        // Some code to undo the change.
-      },
+      onPressed: () {},
     ),
   );
 }

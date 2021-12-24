@@ -11,7 +11,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,8 +22,8 @@ class MyApp extends StatelessWidget {
       home: const RoomPage(),
       darkTheme: ThemeData.dark(),
       routes: {
-        route.ROOM: (context) => RoomPage(),
-        route.GAME: (context) => GamePage(),
+        route.ROOM: (context) => const RoomPage(),
+        route.GAME: (context) => const GamePage(),
       },
     );
   }

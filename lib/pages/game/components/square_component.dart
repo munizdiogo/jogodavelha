@@ -21,6 +21,7 @@ class _SquareComponentState extends State<SquareComponent> {
   late String tagPlayer;
   late Color colorTagPlayer;
 
+  @override
   initState() {
     tagPlayer = '';
     colorTagPlayer = Colors.white;
