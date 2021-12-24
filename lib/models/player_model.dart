@@ -26,7 +26,7 @@ class PlayerModel {
   String? c3;
 
   PlayerModel({
-    this.autoChangePlayer = false,
+    this.autoChangePlayer = true,
     required this.activePlayer,
     this.winnerPlayer,
     this.tagPlayer1 = 'X',
