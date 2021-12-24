@@ -49,7 +49,7 @@ class _RoomPageState extends State<RoomPage> {
               "https://static.wikia.nocookie.net/coragem/images/9/95/Muriel.png/revision/latest/top-crop/width/360/height/450?cb=20130423151854&path-prefix=pt-br",
               width: 200,
             ),
-            const Text('Jogo da Velha'),
+            const Text('#################\n     JOGO DA VELHA'),
             const SizedBox(height: 50),
             SizedBox(
               width: 300,
