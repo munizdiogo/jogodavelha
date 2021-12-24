@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Constants {
-  static double sizeBigCircleColor = 32;
+  static double sizeBigCircleColor = 40;
   static double sizeSmallCircleColor = 16;
 
   static Map<String, Color> mapColors = {

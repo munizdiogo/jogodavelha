@@ -32,7 +32,23 @@ class _GamePageState extends State<GamePage> {
                     onPressed: () {
                       Navigator.of(context).pushReplacementNamed(route.ROOM);
                     },
-                    child: Text('Sair do jogo'),
+                    child: Text('Sair do Jogo'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        var playerModelNew = PlayerModel(
+                            namePlayer1: playerModel.namePlayer1,
+                            colorPlayer1: playerModel.colorPlayer1,
+                            activePlayer: enumPlayer.PLAYER1);
+                        Navigator.pushReplacementNamed(
+                          context,
+                          route.GAME,
+                          arguments: playerModelNew,
+                        );
+                      });
+                    },
+                    child: Text('Reiniciar Jogo'),
                   ),
                   TextButton(
                     onPressed: () {
@@ -42,11 +58,9 @@ class _GamePageState extends State<GamePage> {
                         } else {
                           playerModel.activePlayer = enumPlayer.PLAYER1;
                         }
-
-                        print(playerModel.activePlayer);
                       });
                     },
-                    child: Text('Mudar Player'),
+                    child: Text('Mudar Jogador'),
                   ),
                 ],
               ),
