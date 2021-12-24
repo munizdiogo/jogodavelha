@@ -19,7 +19,7 @@ class _GamePageState extends State<GamePage> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(8),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

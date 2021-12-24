@@ -22,9 +22,10 @@ class _PlayersComponentsState extends State<PlayersComponents> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
+              radius: 32,
               child: Icon(
                 Icons.person,
-                size: 36,
+                size: 42,
                 color: widget.playerModel.colorPlayer1,
               ),
             ),
@@ -44,10 +45,13 @@ class _PlayersComponentsState extends State<PlayersComponents> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
+              radius: 32,
               child: Icon(
                 Icons.person,
-                size: 36,
-                color: widget.playerModel.colorPlayer2,
+                size: 42,
+                color: widget.playerModel.namePlayer2 != null
+                    ? widget.playerModel.colorPlayer2
+                    : Colors.white,
               ),
             ),
             const SizedBox(height: 4),
@@ -56,7 +60,9 @@ class _PlayersComponentsState extends State<PlayersComponents> {
               child: Text(
                 widget.playerModel.namePlayer2 ?? 'Jogador 2',
                 style: TextStyle(
-                  color: widget.playerModel.colorPlayer2,
+                  color: widget.playerModel.namePlayer2 != null
+                      ? widget.playerModel.colorPlayer2
+                      : Colors.white,
                   fontSize: 16,
                 ),
               ),
