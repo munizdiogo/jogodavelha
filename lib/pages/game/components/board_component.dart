@@ -99,7 +99,7 @@ class _BoardComponentState extends State<BoardComponent>
         playerModel.b2 == playerModel.c1) {
       // DIAGONAL DIREITA PARA ESQUERDA | RL
       playerModel.winnerPlayer = getWinnerPlayer(playerModel.a3!);
-      alignLine = const Alignment(0, -0);
+      alignLine = const Alignment(0, 0);
       turnsRotationLine = 0.13;
     } else if (playerModel.winnerPlayer == null &&
         (playerModel.a1 != null &&
@@ -113,11 +113,20 @@ class _BoardComponentState extends State<BoardComponent>
             playerModel.c3 != null)) {
       // EMPATE | TIED
       playerModel.winnerPlayer = enumPlayer.TIED;
-      alignLine = Alignment.bottomRight;
+      alignLine = const Alignment(0, 0);
+      turnsRotationLine = 0;
     }
 
-    if (playerModel.winnerPlayer != null &&
-        playerModel.winnerPlayer != enumPlayer.TIED) {
+    if (playerModel.winnerPlayer == enumPlayer.TIED) {
+      setState(() {
+        alignmentLineAnimation = alignLine;
+        sizeLineFinishAnimation = SizeTween(
+          begin: const Size(8, 350),
+          end: const Size(350, 350),
+        ).animate(controllerLineFinish);
+        controllerLineFinish.forward();
+      });
+    } else if (playerModel.winnerPlayer != null) {
       setState(() {
         alignmentLineAnimation = alignLine;
         controllerLineFinish.forward();
@@ -242,7 +251,22 @@ class _BoardComponentState extends State<BoardComponent>
                         turns: turnsRotationLine,
                         child: SizedBox(
                           child: Container(
-                            color: Colors.green,
+                            child: widget.playerModel.winnerPlayer ==
+                                    enumPlayer.TIED
+                                ? const Center(
+                                    child: Text(
+                                      'DEU VELHA',
+                                      style: TextStyle(
+                                          fontSize: 42,
+                                          color: Colors.red,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                : Container(),
+                            color: widget.playerModel.winnerPlayer ==
+                                    enumPlayer.TIED
+                                ? Colors.black54
+                                : Colors.green,
                           ),
                           height: sizeLineFinishAnimation.value?.height,
                           width: sizeLineFinishAnimation.value?.width,
