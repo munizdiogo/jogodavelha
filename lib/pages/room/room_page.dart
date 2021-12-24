@@ -155,7 +155,7 @@ class _RoomPageState extends State<RoomPage> {
                   playerModel = PlayerModel(
                       namePlayer1: textEditingController.text,
                       colorPlayer1: getColorSelected(colorSelected),
-                      activePlayer: enumActivePlayer.PLAYER1);
+                      activePlayer: enumPlayer.PLAYER1);
                   Navigator.pushReplacementNamed(
                     context,
                     route.GAME,

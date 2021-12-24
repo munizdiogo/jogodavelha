@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-enum enumActivePlayer { PLAYER1, PLAYER2 }
+enum enumPlayer { PLAYER1, PLAYER2, TIED }
 
 class PlayerModel {
-  enumActivePlayer activePlayer;
+  enumPlayer activePlayer;
+  enumPlayer? winnerPlayer;
   final String namePlayer1;
   final Color colorPlayer1;
   final String tagPlayer1;
@@ -23,6 +24,7 @@ class PlayerModel {
 
   PlayerModel({
     required this.activePlayer,
+    this.winnerPlayer,
     this.tagPlayer1 = 'X',
     this.tagPlayer2 = 'O',
     this.gameFinished = false,

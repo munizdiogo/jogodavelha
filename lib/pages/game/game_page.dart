@@ -37,11 +37,10 @@ class _GamePageState extends State<GamePage> {
                   TextButton(
                     onPressed: () {
                       setState(() {
-                        if (playerModel.activePlayer ==
-                            enumActivePlayer.PLAYER1) {
-                          playerModel.activePlayer = enumActivePlayer.PLAYER2;
+                        if (playerModel.activePlayer == enumPlayer.PLAYER1) {
+                          playerModel.activePlayer = enumPlayer.PLAYER2;
                         } else {
-                          playerModel.activePlayer = enumActivePlayer.PLAYER1;
+                          playerModel.activePlayer = enumPlayer.PLAYER1;
                         }
 
                         print(playerModel.activePlayer);

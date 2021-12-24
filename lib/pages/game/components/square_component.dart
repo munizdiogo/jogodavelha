@@ -4,10 +4,12 @@ import 'package:jogodavelha/models/player_model.dart';
 class SquareComponent extends StatefulWidget {
   final String id;
   final PlayerModel playerModel;
+  final VoidCallback callback;
   const SquareComponent({
     Key? key,
     required this.id,
     required this.playerModel,
+    required this.callback,
   }) : super(key: key);
 
   @override
@@ -30,7 +32,7 @@ class _SquareComponentState extends State<SquareComponent> {
       setState(() {
         isSelected = isSelected ? isSelected : !isSelected;
 
-        if (widget.playerModel.activePlayer == enumActivePlayer.PLAYER1) {
+        if (widget.playerModel.activePlayer == enumPlayer.PLAYER1) {
           tagPlayer = widget.playerModel.tagPlayer1;
           colorTagPlayer = widget.playerModel.colorPlayer1;
         } else {
@@ -46,14 +48,15 @@ class _SquareComponentState extends State<SquareComponent> {
         if (idSquare == 'c1') widget.playerModel.c1 = tagPlayer;
         if (idSquare == 'c2') widget.playerModel.c2 = tagPlayer;
         if (idSquare == 'c3') widget.playerModel.c3 = tagPlayer;
+        widget.callback();
       });
     }
 
     return InkWell(
-      onTap: () {
-        showTag(idSquare: widget.id);
-        print(widget.id);
-      },
+      onTap: () => widget.playerModel.winnerPlayer == null &&
+              widget.playerModel.winnerPlayer != enumPlayer.TIED
+          ? showTag(idSquare: widget.id)
+          : null,
       child: Container(
         child: isSelected
             ? Center(
