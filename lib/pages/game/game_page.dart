@@ -38,6 +38,7 @@ class _GamePageState extends State<GamePage> {
                     onPressed: () {
                       setState(() {
                         var playerModelNew = PlayerModel(
+                            autoChangePlayer: playerModel.autoChangePlayer,
                             namePlayer1: playerModel.namePlayer1,
                             colorPlayer1: playerModel.colorPlayer1,
                             activePlayer: enumPlayer.PLAYER1);
@@ -50,17 +51,37 @@ class _GamePageState extends State<GamePage> {
                     },
                     child: Text('Reiniciar Jogo'),
                   ),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        if (playerModel.activePlayer == enumPlayer.PLAYER1) {
-                          playerModel.activePlayer = enumPlayer.PLAYER2;
-                        } else {
-                          playerModel.activePlayer = enumPlayer.PLAYER1;
-                        }
-                      });
-                    },
-                    child: Text('Mudar Jogador'),
+                  Row(
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          setState(() {
+                            if (playerModel.activePlayer ==
+                                enumPlayer.PLAYER1) {
+                              playerModel.activePlayer = enumPlayer.PLAYER2;
+                            } else {
+                              playerModel.activePlayer = enumPlayer.PLAYER1;
+                            }
+                          });
+                        },
+                        child: Text('Mudar Jogador'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          setState(() {
+                            playerModel.autoChangePlayer =
+                                !playerModel.autoChangePlayer;
+                          });
+                        },
+                        child: Text(
+                          'Modo Automático',
+                          style: TextStyle(
+                              color: playerModel.autoChangePlayer
+                                  ? Colors.lightGreen
+                                  : Colors.blueGrey),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

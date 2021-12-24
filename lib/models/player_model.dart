@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 enum enumPlayer { PLAYER1, PLAYER2, TIED }
 
 class PlayerModel {
+  bool autoChangePlayer;
   enumPlayer activePlayer;
   enumPlayer? winnerPlayer;
   final String namePlayer1;
@@ -23,6 +24,7 @@ class PlayerModel {
   String? c3;
 
   PlayerModel({
+    this.autoChangePlayer = false,
     required this.activePlayer,
     this.winnerPlayer,
     this.tagPlayer1 = 'X',

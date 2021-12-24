@@ -49,6 +49,14 @@ class _SquareComponentState extends State<SquareComponent> {
         if (idSquare == 'c2') widget.playerModel.c2 = tagPlayer;
         if (idSquare == 'c3') widget.playerModel.c3 = tagPlayer;
         widget.callback();
+
+        if (widget.playerModel.autoChangePlayer) {
+          if (widget.playerModel.activePlayer == enumPlayer.PLAYER1) {
+            widget.playerModel.activePlayer = enumPlayer.PLAYER2;
+          } else {
+            widget.playerModel.activePlayer = enumPlayer.PLAYER1;
+          }
+        }
       });
     }
 
