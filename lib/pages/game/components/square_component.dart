@@ -73,6 +73,7 @@ class _SquareComponentState extends State<SquareComponent> {
           }
         }
       });
+      playerController.updateController();
     }
 
     return InkWell(

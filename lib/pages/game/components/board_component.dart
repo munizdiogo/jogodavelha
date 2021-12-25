@@ -50,10 +50,11 @@ class _BoardComponentState extends State<BoardComponent>
     var playerController = Provider.of<PlayerController>(context);
 
     enumPlayer getWinnerPlayer(String tagPlayer) {
-      return playerController.playerModelController.a1 ==
-              playerController.playerModelController.tagPlayer1
+      var winer = tagPlayer == playerController.playerModelController.tagPlayer1
           ? enumPlayer.PLAYER1
           : enumPlayer.PLAYER2;
+      print(winer);
+      return winer;
     }
 
     void verificationFinish() {
@@ -169,6 +170,7 @@ class _BoardComponentState extends State<BoardComponent>
           alignmentLineAnimation = alignLine;
           controllerLineFinish.forward();
         });
+        playerController.updateController();
       }
     }
 
