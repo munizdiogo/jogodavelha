@@ -49,114 +49,50 @@ class _BoardComponentState extends State<BoardComponent>
     var colorLine = Theme.of(context).primaryColorLight;
     var playerController = Provider.of<PlayerController>(context);
 
-    enumPlayer getWinnerPlayer(String tagPlayer) {
-      var winer = tagPlayer == playerController.playerModelController.tagPlayer1
-          ? enumPlayer.PLAYER1
-          : enumPlayer.PLAYER2;
-      print(winer);
-      return winer;
-    }
-
     void verificationFinish() {
       Alignment alignLine = Alignment.bottomRight;
-      if (playerController.playerModelController.a1 != null &&
-          playerController.playerModelController.a1 ==
-              playerController.playerModelController.a2 &&
-          playerController.playerModelController.a2 ==
-              playerController.playerModelController.a3) {
-        // LINHA 1 | A
-        playerController.playerModelController.winnerPlayer =
-            getWinnerPlayer(playerController.playerModelController.a1!);
+      var _playerModel = playerController.playerModelController;
+
+      if (playerController.getResultLine1()) {
+        playerController.setWinnerPlayer(_playerModel.a1!);
         alignLine = const Alignment(0, -1.5);
         turnsRotationLine = 0.25;
-      } else if (playerController.playerModelController.b1 != null &&
-          playerController.playerModelController.b1 ==
-              playerController.playerModelController.b2 &&
-          playerController.playerModelController.b2 ==
-              playerController.playerModelController.b3) {
-        // LINHA 2 | B
-        playerController.playerModelController.winnerPlayer =
-            getWinnerPlayer(playerController.playerModelController.b1!);
+      } else if (playerController.getResultLine2()) {
+        playerController.setWinnerPlayer(_playerModel.b1!);
         alignLine = const Alignment(0, 0);
         turnsRotationLine = 0.25;
-      } else if (playerController.playerModelController.c1 != null &&
-          playerController.playerModelController.c1 ==
-              playerController.playerModelController.c2 &&
-          playerController.playerModelController.c2 ==
-              playerController.playerModelController.c3) {
-        // LINHA 3 | C
-        playerController.playerModelController.winnerPlayer =
-            getWinnerPlayer(playerController.playerModelController.c1!);
+      } else if (playerController.getResultLine3()) {
+        playerController.setWinnerPlayer(_playerModel.c1!);
         alignLine = const Alignment(0, 1.5);
         turnsRotationLine = 0.25;
-      } else if (playerController.playerModelController.a1 != null &&
-          playerController.playerModelController.a1 ==
-              playerController.playerModelController.b1 &&
-          playerController.playerModelController.b1 ==
-              playerController.playerModelController.c1) {
-        // COLUNA 1
-        playerController.playerModelController.winnerPlayer =
-            getWinnerPlayer(playerController.playerModelController.a1!);
+      } else if (playerController.getResultColumn1()) {
+        playerController.setWinnerPlayer(_playerModel.a1!);
         alignLine = const Alignment(-0.6, 0);
         turnsRotationLine = 0;
-      } else if (playerController.playerModelController.a2 != null &&
-          playerController.playerModelController.a2 ==
-              playerController.playerModelController.b2 &&
-          playerController.playerModelController.b2 ==
-              playerController.playerModelController.c2) {
-        // COLUNA 2
-        playerController.playerModelController.winnerPlayer =
-            getWinnerPlayer(playerController.playerModelController.a2!);
+      } else if (playerController.getResultColumn2()) {
+        playerController.setWinnerPlayer(_playerModel.a2!);
         alignLine = const Alignment(0, 0);
         turnsRotationLine = 0;
-      } else if (playerController.playerModelController.a3 != null &&
-          playerController.playerModelController.a3 ==
-              playerController.playerModelController.b3 &&
-          playerController.playerModelController.b3 ==
-              playerController.playerModelController.c3) {
-        // COLUNA 3
-        playerController.playerModelController.winnerPlayer =
-            getWinnerPlayer(playerController.playerModelController.a3!);
+      } else if (playerController.getResultColumn3()) {
+        playerController.setWinnerPlayer(_playerModel.a3!);
         alignLine = const Alignment(0.6, 0);
         turnsRotationLine = 0;
-      } else if (playerController.playerModelController.a1 != null &&
-          playerController.playerModelController.a1 ==
-              playerController.playerModelController.b2 &&
-          playerController.playerModelController.b2 ==
-              playerController.playerModelController.c3) {
-        // DIAGONAL ESQUEDAR PARA DIREITA | LR
-        playerController.playerModelController.winnerPlayer =
-            getWinnerPlayer(playerController.playerModelController.a1!);
+      } else if (playerController.getResultDiagonalA1C3()) {
+        playerController.setWinnerPlayer(_playerModel.a1!);
         alignLine = const Alignment(0, 0);
         turnsRotationLine = -0.13;
-      } else if (playerController.playerModelController.a3 != null &&
-          playerController.playerModelController.a3 ==
-              playerController.playerModelController.b2 &&
-          playerController.playerModelController.b2 ==
-              playerController.playerModelController.c1) {
-        // DIAGONAL DIREITA PARA ESQUERDA | RL
-        playerController.playerModelController.winnerPlayer =
-            getWinnerPlayer(playerController.playerModelController.a3!);
+      } else if (playerController.getResultDiagonalA3C1()) {
+        playerController.setWinnerPlayer(_playerModel.a3!);
         alignLine = const Alignment(0, 0);
         turnsRotationLine = 0.13;
-      } else if (playerController.playerModelController.winnerPlayer == null &&
-          (playerController.playerModelController.a1 != null &&
-              playerController.playerModelController.a2 != null &&
-              playerController.playerModelController.a3 != null &&
-              playerController.playerModelController.b1 != null &&
-              playerController.playerModelController.b2 != null &&
-              playerController.playerModelController.b3 != null &&
-              playerController.playerModelController.c1 != null &&
-              playerController.playerModelController.c2 != null &&
-              playerController.playerModelController.c3 != null)) {
-        // EMPATE | TIED
-        playerController.playerModelController.winnerPlayer = enumPlayer.TIED;
+      } else if (playerController.getResultTied()) {
+        playerController.setWinnerPlayer('TIED');
         alignLine = const Alignment(0, 0);
         turnsRotationLine = 0;
       }
 
-      if (playerController.playerModelController.winnerPlayer ==
-          enumPlayer.TIED) {
+      if (_playerModel.winnerPlayer == enumPlayer.TIED) {
+        print('DEU EMPATE');
         setState(() {
           alignmentLineAnimation = alignLine;
           sizeLineFinishAnimation = SizeTween(
@@ -165,13 +101,13 @@ class _BoardComponentState extends State<BoardComponent>
           ).animate(controllerLineFinish);
           controllerLineFinish.forward();
         });
-      } else if (playerController.playerModelController.winnerPlayer != null) {
+      } else if (_playerModel.winnerPlayer != null) {
         setState(() {
           alignmentLineAnimation = alignLine;
           controllerLineFinish.forward();
         });
-        playerController.updateController();
       }
+      playerController.updateController();
     }
 
     return !startGame

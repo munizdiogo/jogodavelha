@@ -22,6 +22,7 @@ class _SquareComponentState extends State<SquareComponent> {
   late Color colorTagPlayer;
 
   @override
+  // ignore: must_call_super
   initState() {
     tagPlayer = '';
     colorTagPlayer = Colors.white;
@@ -42,24 +43,34 @@ class _SquareComponentState extends State<SquareComponent> {
           tagPlayer = playerController.playerModelController.tagPlayer2;
           colorTagPlayer = playerController.playerModelController.colorPlayer2;
         }
-        if (idSquare == 'a1')
+        if (idSquare == 'a1') {
           playerController.playerModelController.a1 = tagPlayer;
-        if (idSquare == 'a2')
+        }
+        if (idSquare == 'a2') {
           playerController.playerModelController.a2 = tagPlayer;
-        if (idSquare == 'a3')
+        }
+        if (idSquare == 'a3') {
           playerController.playerModelController.a3 = tagPlayer;
-        if (idSquare == 'b1')
+        }
+        if (idSquare == 'b1') {
           playerController.playerModelController.b1 = tagPlayer;
-        if (idSquare == 'b2')
+        }
+        if (idSquare == 'b2') {
           playerController.playerModelController.b2 = tagPlayer;
-        if (idSquare == 'b3')
+        }
+        if (idSquare == 'b3') {
           playerController.playerModelController.b3 = tagPlayer;
-        if (idSquare == 'c1')
+        }
+        if (idSquare == 'c1') {
           playerController.playerModelController.c1 = tagPlayer;
-        if (idSquare == 'c2')
+        }
+        if (idSquare == 'c2') {
           playerController.playerModelController.c2 = tagPlayer;
-        if (idSquare == 'c3')
+        }
+        if (idSquare == 'c3') {
           playerController.playerModelController.c3 = tagPlayer;
+        }
+
         widget.callback();
 
         if (playerController.playerModelController.autoChangePlayer) {
