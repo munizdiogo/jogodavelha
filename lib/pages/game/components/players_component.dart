@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jogodavelha/controllers/player_controller.dart';
 import 'package:jogodavelha/models/player_model.dart';
+import 'package:provider/provider.dart';
 
 class PlayersComponents extends StatefulWidget {
   final PlayerModel playerModel;
@@ -15,6 +17,7 @@ class PlayersComponents extends StatefulWidget {
 class _PlayersComponentsState extends State<PlayersComponents> {
   @override
   Widget build(BuildContext context) {
+    var playerController = Provider.of<PlayerController>(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
@@ -26,15 +29,15 @@ class _PlayersComponentsState extends State<PlayersComponents> {
               child: Icon(
                 Icons.person,
                 size: 42,
-                color: widget.playerModel.colorPlayer1,
+                color: playerController.playerModelController.colorPlayer1,
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
-                widget.playerModel.namePlayer1,
+                playerController.playerModelController.namePlayer1,
                 style: TextStyle(
-                  color: widget.playerModel.colorPlayer1,
+                  color: playerController.playerModelController.colorPlayer1,
                   fontSize: 16,
                 ),
               ),
@@ -49,20 +52,23 @@ class _PlayersComponentsState extends State<PlayersComponents> {
               child: Icon(
                 Icons.person,
                 size: 42,
-                color: widget.playerModel.namePlayer2 != null
-                    ? widget.playerModel.colorPlayer2
-                    : Colors.white,
+                color:
+                    playerController.playerModelController.namePlayer2 != null
+                        ? playerController.playerModelController.colorPlayer2
+                        : Colors.white,
               ),
             ),
             const SizedBox(height: 4),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
-                widget.playerModel.namePlayer2 ?? 'Jogador 2',
+                playerController.playerModelController.namePlayer2 ??
+                    'Jogador 2',
                 style: TextStyle(
-                  color: widget.playerModel.namePlayer2 != null
-                      ? widget.playerModel.colorPlayer2
-                      : Colors.white,
+                  color:
+                      playerController.playerModelController.namePlayer2 != null
+                          ? playerController.playerModelController.colorPlayer2
+                          : Colors.white,
                   fontSize: 16,
                 ),
               ),

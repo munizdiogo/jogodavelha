@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:jogodavelha/constants.dart';
+import 'package:jogodavelha/controllers/player_controller.dart';
 import 'package:jogodavelha/models/player_model.dart';
 import 'package:jogodavelha/routes/routes.dart' as route;
+import 'package:provider/provider.dart';
 
 class RoomPage extends StatefulWidget {
   const RoomPage({Key? key}) : super(key: key);
@@ -19,7 +21,6 @@ class _RoomPageState extends State<RoomPage> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     controllerTextJogoAnimation = AnimationController(
       vsync: this,
@@ -27,8 +28,8 @@ class _RoomPageState extends State<RoomPage> with TickerProviderStateMixin {
     );
 
     sizeTextJogoAnimation = SizeTween(
-      begin: Size(0, 0),
-      end: Size(20, 300),
+      begin: const Size(0, 0),
+      end: const Size(20, 300),
     ).animate(controllerTextJogoAnimation);
   }
 
@@ -56,6 +57,7 @@ class _RoomPageState extends State<RoomPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    var playerController = Provider.of<PlayerController>(context);
     controllerTextJogoAnimation.forward();
     return Scaffold(
       body: Center(
@@ -70,7 +72,7 @@ class _RoomPageState extends State<RoomPage> with TickerProviderStateMixin {
                   AnimatedBuilder(
                       animation: controllerTextJogoAnimation,
                       builder: (context, snapshot) {
-                        return Container(
+                        return SizedBox(
                           height: sizeTextJogoAnimation.value?.height,
                           child: const Text(
                             'J\n#\nG\n#',
@@ -190,13 +192,16 @@ class _RoomPageState extends State<RoomPage> with TickerProviderStateMixin {
                     );
                   } else {
                     playerModel = PlayerModel(
-                        namePlayer1: textEditingController.text,
-                        colorPlayer1: getColorSelected(colorSelected),
-                        activePlayer: enumPlayer.PLAYER1);
+                      namePlayer1: textEditingController.text,
+                      colorPlayer1: getColorSelected(colorSelected),
+                      activePlayer: enumPlayer.PLAYER1,
+                    );
+
+                    playerController.createGame(playerModel);
+
                     Navigator.pushReplacementNamed(
                       context,
                       route.GAME,
-                      arguments: playerModel,
                     );
                   }
                 },

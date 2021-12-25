@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jogodavelha/controllers/player_controller.dart';
 import 'package:jogodavelha/models/player_model.dart';
 import 'package:jogodavelha/pages/game/components/square_component.dart';
+import 'package:provider/provider.dart';
 
 class BoardComponent extends StatefulWidget {
   final PlayerModel playerModel;
@@ -36,104 +38,6 @@ class _BoardComponentState extends State<BoardComponent>
     ).animate(controllerLineFinish);
   }
 
-  enumPlayer getWinnerPlayer(String tagPlayer) {
-    return widget.playerModel.a1 == widget.playerModel.tagPlayer1
-        ? enumPlayer.PLAYER1
-        : enumPlayer.PLAYER2;
-  }
-
-  void verificationFinish() {
-    PlayerModel playerModel = widget.playerModel;
-    Alignment alignLine = Alignment.bottomRight;
-    if (playerModel.a1 != null &&
-        playerModel.a1 == playerModel.a2 &&
-        playerModel.a2 == playerModel.a3) {
-      // LINHA 1 | A
-      playerModel.winnerPlayer = getWinnerPlayer(playerModel.a1!);
-      alignLine = const Alignment(0, -1.5);
-      turnsRotationLine = 0.25;
-    } else if (playerModel.b1 != null &&
-        playerModel.b1 == playerModel.b2 &&
-        playerModel.b2 == playerModel.b3) {
-      // LINHA 2 | B
-      playerModel.winnerPlayer = getWinnerPlayer(playerModel.b1!);
-      alignLine = const Alignment(0, 0);
-      turnsRotationLine = 0.25;
-    } else if (playerModel.c1 != null &&
-        playerModel.c1 == playerModel.c2 &&
-        playerModel.c2 == playerModel.c3) {
-      // LINHA 3 | C
-      playerModel.winnerPlayer = getWinnerPlayer(playerModel.c1!);
-      alignLine = const Alignment(0, 1.5);
-      turnsRotationLine = 0.25;
-    } else if (playerModel.a1 != null &&
-        playerModel.a1 == playerModel.b1 &&
-        playerModel.b1 == playerModel.c1) {
-      // COLUNA 1
-      playerModel.winnerPlayer = getWinnerPlayer(playerModel.a1!);
-      alignLine = const Alignment(-0.6, 0);
-      turnsRotationLine = 0;
-    } else if (playerModel.a2 != null &&
-        playerModel.a2 == playerModel.b2 &&
-        playerModel.b2 == playerModel.c2) {
-      // COLUNA 2
-      playerModel.winnerPlayer = getWinnerPlayer(playerModel.a2!);
-      alignLine = const Alignment(0, 0);
-      turnsRotationLine = 0;
-    } else if (playerModel.a3 != null &&
-        playerModel.a3 == playerModel.b3 &&
-        playerModel.b3 == playerModel.c3) {
-      // COLUNA 3
-      playerModel.winnerPlayer = getWinnerPlayer(playerModel.a3!);
-      alignLine = const Alignment(0.6, 0);
-      turnsRotationLine = 0;
-    } else if (playerModel.a1 != null &&
-        playerModel.a1 == playerModel.b2 &&
-        playerModel.b2 == playerModel.c3) {
-      // DIAGONAL ESQUEDAR PARA DIREITA | LR
-      playerModel.winnerPlayer = getWinnerPlayer(playerModel.a1!);
-      alignLine = const Alignment(0, 0);
-      turnsRotationLine = -0.13;
-    } else if (playerModel.a3 != null &&
-        playerModel.a3 == playerModel.b2 &&
-        playerModel.b2 == playerModel.c1) {
-      // DIAGONAL DIREITA PARA ESQUERDA | RL
-      playerModel.winnerPlayer = getWinnerPlayer(playerModel.a3!);
-      alignLine = const Alignment(0, 0);
-      turnsRotationLine = 0.13;
-    } else if (playerModel.winnerPlayer == null &&
-        (playerModel.a1 != null &&
-            playerModel.a2 != null &&
-            playerModel.a3 != null &&
-            playerModel.b1 != null &&
-            playerModel.b2 != null &&
-            playerModel.b3 != null &&
-            playerModel.c1 != null &&
-            playerModel.c2 != null &&
-            playerModel.c3 != null)) {
-      // EMPATE | TIED
-      playerModel.winnerPlayer = enumPlayer.TIED;
-      alignLine = const Alignment(0, 0);
-      turnsRotationLine = 0;
-    }
-
-    if (playerModel.winnerPlayer == enumPlayer.TIED) {
-      setState(() {
-        alignmentLineAnimation = alignLine;
-        sizeLineFinishAnimation = SizeTween(
-          begin: const Size(8, 350),
-          end: const Size(350, 350),
-        ).animate(controllerLineFinish);
-        controllerLineFinish.forward();
-      });
-    } else if (playerModel.winnerPlayer != null) {
-      setState(() {
-        alignmentLineAnimation = alignLine;
-        controllerLineFinish.forward();
-      });
-    }
-  }
-
   @override
   void dispose() {
     super.dispose();
@@ -143,6 +47,130 @@ class _BoardComponentState extends State<BoardComponent>
   @override
   Widget build(BuildContext context) {
     var colorLine = Theme.of(context).primaryColorLight;
+    var playerController = Provider.of<PlayerController>(context);
+
+    enumPlayer getWinnerPlayer(String tagPlayer) {
+      return playerController.playerModelController.a1 ==
+              playerController.playerModelController.tagPlayer1
+          ? enumPlayer.PLAYER1
+          : enumPlayer.PLAYER2;
+    }
+
+    void verificationFinish() {
+      Alignment alignLine = Alignment.bottomRight;
+      if (playerController.playerModelController.a1 != null &&
+          playerController.playerModelController.a1 ==
+              playerController.playerModelController.a2 &&
+          playerController.playerModelController.a2 ==
+              playerController.playerModelController.a3) {
+        // LINHA 1 | A
+        playerController.playerModelController.winnerPlayer =
+            getWinnerPlayer(playerController.playerModelController.a1!);
+        alignLine = const Alignment(0, -1.5);
+        turnsRotationLine = 0.25;
+      } else if (playerController.playerModelController.b1 != null &&
+          playerController.playerModelController.b1 ==
+              playerController.playerModelController.b2 &&
+          playerController.playerModelController.b2 ==
+              playerController.playerModelController.b3) {
+        // LINHA 2 | B
+        playerController.playerModelController.winnerPlayer =
+            getWinnerPlayer(playerController.playerModelController.b1!);
+        alignLine = const Alignment(0, 0);
+        turnsRotationLine = 0.25;
+      } else if (playerController.playerModelController.c1 != null &&
+          playerController.playerModelController.c1 ==
+              playerController.playerModelController.c2 &&
+          playerController.playerModelController.c2 ==
+              playerController.playerModelController.c3) {
+        // LINHA 3 | C
+        playerController.playerModelController.winnerPlayer =
+            getWinnerPlayer(playerController.playerModelController.c1!);
+        alignLine = const Alignment(0, 1.5);
+        turnsRotationLine = 0.25;
+      } else if (playerController.playerModelController.a1 != null &&
+          playerController.playerModelController.a1 ==
+              playerController.playerModelController.b1 &&
+          playerController.playerModelController.b1 ==
+              playerController.playerModelController.c1) {
+        // COLUNA 1
+        playerController.playerModelController.winnerPlayer =
+            getWinnerPlayer(playerController.playerModelController.a1!);
+        alignLine = const Alignment(-0.6, 0);
+        turnsRotationLine = 0;
+      } else if (playerController.playerModelController.a2 != null &&
+          playerController.playerModelController.a2 ==
+              playerController.playerModelController.b2 &&
+          playerController.playerModelController.b2 ==
+              playerController.playerModelController.c2) {
+        // COLUNA 2
+        playerController.playerModelController.winnerPlayer =
+            getWinnerPlayer(playerController.playerModelController.a2!);
+        alignLine = const Alignment(0, 0);
+        turnsRotationLine = 0;
+      } else if (playerController.playerModelController.a3 != null &&
+          playerController.playerModelController.a3 ==
+              playerController.playerModelController.b3 &&
+          playerController.playerModelController.b3 ==
+              playerController.playerModelController.c3) {
+        // COLUNA 3
+        playerController.playerModelController.winnerPlayer =
+            getWinnerPlayer(playerController.playerModelController.a3!);
+        alignLine = const Alignment(0.6, 0);
+        turnsRotationLine = 0;
+      } else if (playerController.playerModelController.a1 != null &&
+          playerController.playerModelController.a1 ==
+              playerController.playerModelController.b2 &&
+          playerController.playerModelController.b2 ==
+              playerController.playerModelController.c3) {
+        // DIAGONAL ESQUEDAR PARA DIREITA | LR
+        playerController.playerModelController.winnerPlayer =
+            getWinnerPlayer(playerController.playerModelController.a1!);
+        alignLine = const Alignment(0, 0);
+        turnsRotationLine = -0.13;
+      } else if (playerController.playerModelController.a3 != null &&
+          playerController.playerModelController.a3 ==
+              playerController.playerModelController.b2 &&
+          playerController.playerModelController.b2 ==
+              playerController.playerModelController.c1) {
+        // DIAGONAL DIREITA PARA ESQUERDA | RL
+        playerController.playerModelController.winnerPlayer =
+            getWinnerPlayer(playerController.playerModelController.a3!);
+        alignLine = const Alignment(0, 0);
+        turnsRotationLine = 0.13;
+      } else if (playerController.playerModelController.winnerPlayer == null &&
+          (playerController.playerModelController.a1 != null &&
+              playerController.playerModelController.a2 != null &&
+              playerController.playerModelController.a3 != null &&
+              playerController.playerModelController.b1 != null &&
+              playerController.playerModelController.b2 != null &&
+              playerController.playerModelController.b3 != null &&
+              playerController.playerModelController.c1 != null &&
+              playerController.playerModelController.c2 != null &&
+              playerController.playerModelController.c3 != null)) {
+        // EMPATE | TIED
+        playerController.playerModelController.winnerPlayer = enumPlayer.TIED;
+        alignLine = const Alignment(0, 0);
+        turnsRotationLine = 0;
+      }
+
+      if (playerController.playerModelController.winnerPlayer ==
+          enumPlayer.TIED) {
+        setState(() {
+          alignmentLineAnimation = alignLine;
+          sizeLineFinishAnimation = SizeTween(
+            begin: const Size(8, 350),
+            end: const Size(350, 350),
+          ).animate(controllerLineFinish);
+          controllerLineFinish.forward();
+        });
+      } else if (playerController.playerModelController.winnerPlayer != null) {
+        setState(() {
+          alignmentLineAnimation = alignLine;
+          controllerLineFinish.forward();
+        });
+      }
+    }
 
     return !startGame
         ? TextButton(
@@ -171,19 +199,16 @@ class _BoardComponentState extends State<BoardComponent>
                       children: [
                         SquareComponent(
                           id: 'a1',
-                          playerModel: widget.playerModel,
                           callback: verificationFinish,
                         ),
                         Container(height: 110, width: 4, color: colorLine),
                         SquareComponent(
                           id: 'a2',
-                          playerModel: widget.playerModel,
                           callback: verificationFinish,
                         ),
                         Container(height: 110, width: 4, color: colorLine),
                         SquareComponent(
                           id: 'a3',
-                          playerModel: widget.playerModel,
                           callback: verificationFinish,
                         ),
                       ],
@@ -199,19 +224,16 @@ class _BoardComponentState extends State<BoardComponent>
                       children: [
                         SquareComponent(
                           id: 'b1',
-                          playerModel: widget.playerModel,
                           callback: verificationFinish,
                         ),
                         Container(height: 110, width: 4, color: colorLine),
                         SquareComponent(
                           id: 'b2',
-                          playerModel: widget.playerModel,
                           callback: verificationFinish,
                         ),
                         Container(height: 110, width: 4, color: colorLine),
                         SquareComponent(
                           id: 'b3',
-                          playerModel: widget.playerModel,
                           callback: verificationFinish,
                         ),
                       ],
@@ -222,19 +244,16 @@ class _BoardComponentState extends State<BoardComponent>
                       children: [
                         SquareComponent(
                           id: 'c1',
-                          playerModel: widget.playerModel,
                           callback: verificationFinish,
                         ),
                         Container(height: 110, width: 4, color: colorLine),
                         SquareComponent(
                           id: 'c2',
-                          playerModel: widget.playerModel,
                           callback: verificationFinish,
                         ),
                         Container(height: 110, width: 4, color: colorLine),
                         SquareComponent(
                           id: 'c3',
-                          playerModel: widget.playerModel,
                           callback: verificationFinish,
                         ),
                       ],
@@ -251,7 +270,8 @@ class _BoardComponentState extends State<BoardComponent>
                         turns: turnsRotationLine,
                         child: SizedBox(
                           child: Container(
-                            child: widget.playerModel.winnerPlayer ==
+                            child: playerController
+                                        .playerModelController.winnerPlayer ==
                                     enumPlayer.TIED
                                 ? const Center(
                                     child: Text(
@@ -263,7 +283,8 @@ class _BoardComponentState extends State<BoardComponent>
                                     ),
                                   )
                                 : Container(),
-                            color: widget.playerModel.winnerPlayer ==
+                            color: playerController
+                                        .playerModelController.winnerPlayer ==
                                     enumPlayer.TIED
                                 ? Colors.black54
                                 : Colors.green,

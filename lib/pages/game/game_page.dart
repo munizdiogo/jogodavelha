@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:jogodavelha/controllers/player_controller.dart';
 import 'package:jogodavelha/models/player_model.dart';
 import 'package:jogodavelha/pages/game/components/players_component.dart';
 import 'package:jogodavelha/pages/game/components/board_component.dart';
 import 'package:jogodavelha/routes/routes.dart' as route;
+import 'package:provider/provider.dart';
 
 class GamePage extends StatefulWidget {
   const GamePage({Key? key}) : super(key: key);
@@ -14,7 +16,7 @@ class GamePage extends StatefulWidget {
 class _GamePageState extends State<GamePage> {
   @override
   Widget build(BuildContext context) {
-    var playerModel = ModalRoute.of(context)!.settings.arguments as PlayerModel;
+    var playerController = Provider.of<PlayerController>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -24,8 +26,10 @@ class _GamePageState extends State<GamePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                PlayersComponents(playerModel: playerModel),
-                BoardComponent(playerModel: playerModel),
+                PlayersComponents(
+                    playerModel: playerController.playerModelController),
+                BoardComponent(
+                    playerModel: playerController.playerModelController),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -39,15 +43,18 @@ class _GamePageState extends State<GamePage> {
                       onPressed: () {
                         setState(() {
                           var playerModelNew = PlayerModel(
-                              autoChangePlayer: playerModel.autoChangePlayer,
-                              namePlayer1: playerModel.namePlayer1,
-                              colorPlayer1: playerModel.colorPlayer1,
+                              autoChangePlayer: playerController
+                                  .playerModelController.autoChangePlayer,
+                              namePlayer1: playerController
+                                  .playerModelController.namePlayer1,
+                              colorPlayer1: playerController
+                                  .playerModelController.colorPlayer1,
                               activePlayer: enumPlayer.PLAYER1);
-                          Navigator.pushReplacementNamed(
-                            context,
-                            route.GAME,
-                            arguments: playerModelNew,
-                          );
+
+                          playerController.createGame(playerModelNew);
+
+                          Navigator.of(context)
+                              .pushReplacementNamed(route.GAME);
                         });
                       },
                       child: const Text('Reiniciar Jogo'),
@@ -57,11 +64,14 @@ class _GamePageState extends State<GamePage> {
                         TextButton(
                           onPressed: () {
                             setState(() {
-                              if (playerModel.activePlayer ==
+                              if (playerController
+                                      .playerModelController.activePlayer ==
                                   enumPlayer.PLAYER1) {
-                                playerModel.activePlayer = enumPlayer.PLAYER2;
+                                playerController.playerModelController
+                                    .activePlayer = enumPlayer.PLAYER2;
                               } else {
-                                playerModel.activePlayer = enumPlayer.PLAYER1;
+                                playerController.playerModelController
+                                    .activePlayer = enumPlayer.PLAYER1;
                               }
                             });
                           },
@@ -70,14 +80,17 @@ class _GamePageState extends State<GamePage> {
                         TextButton(
                           onPressed: () {
                             setState(() {
-                              playerModel.autoChangePlayer =
-                                  !playerModel.autoChangePlayer;
+                              playerController
+                                      .playerModelController.autoChangePlayer =
+                                  !playerController
+                                      .playerModelController.autoChangePlayer;
                             });
                           },
                           child: Text(
                             'Modo Automático',
                             style: TextStyle(
-                                color: playerModel.autoChangePlayer
+                                color: playerController
+                                        .playerModelController.autoChangePlayer
                                     ? Colors.lightGreen
                                     : Colors.blueGrey),
                           ),

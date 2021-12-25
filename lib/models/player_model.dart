@@ -8,7 +8,7 @@ class PlayerModel {
   bool autoChangePlayer;
   enumPlayer activePlayer;
   enumPlayer? winnerPlayer;
-  final String namePlayer1;
+  String namePlayer1;
   final Color colorPlayer1;
   final String tagPlayer1;
   final String? namePlayer2;
