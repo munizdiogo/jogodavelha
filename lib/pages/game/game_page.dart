@@ -51,7 +51,9 @@ class _GamePageState extends State<GamePage> {
                                   .playerModelController.colorPlayer1,
                               activePlayer: enumPlayer.PLAYER1);
 
-                          playerController.createGame(playerModelNew);
+                          playerController.createGame(
+                              playerModel: playerModelNew,
+                              typeGame: playerController.typeGame);
 
                           Navigator.of(context)
                               .pushReplacementNamed(route.GAME);
@@ -59,44 +61,44 @@ class _GamePageState extends State<GamePage> {
                       },
                       child: const Text('Reiniciar Jogo'),
                     ),
-                    Row(
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            setState(() {
-                              if (playerController
-                                      .playerModelController.activePlayer ==
-                                  enumPlayer.PLAYER1) {
-                                playerController.playerModelController
-                                    .activePlayer = enumPlayer.PLAYER2;
-                              } else {
-                                playerController.playerModelController
-                                    .activePlayer = enumPlayer.PLAYER1;
-                              }
-                            });
-                          },
-                          child: const Text('Mudar Jogador'),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            setState(() {
-                              playerController
-                                      .playerModelController.autoChangePlayer =
-                                  !playerController
-                                      .playerModelController.autoChangePlayer;
-                            });
-                          },
-                          child: Text(
-                            'Modo Automático',
-                            style: TextStyle(
-                                color: playerController
-                                        .playerModelController.autoChangePlayer
-                                    ? Colors.lightGreen
-                                    : Colors.blueGrey),
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   children: [
+                    //     TextButton(
+                    //       onPressed: () {
+                    //         setState(() {
+                    //           if (playerController
+                    //                   .playerModelController.activePlayer ==
+                    //               enumPlayer.PLAYER1) {
+                    //             playerController.playerModelController
+                    //                 .activePlayer = enumPlayer.PLAYER2;
+                    //           } else {
+                    //             playerController.playerModelController
+                    //                 .activePlayer = enumPlayer.PLAYER1;
+                    //           }
+                    //         });
+                    //       },
+                    //       child: const Text('Mudar Jogador'),
+                    //     ),
+                    //     TextButton(
+                    //       onPressed: () {
+                    //         setState(() {
+                    //           playerController
+                    //                   .playerModelController.autoChangePlayer =
+                    //               !playerController
+                    //                   .playerModelController.autoChangePlayer;
+                    //         });
+                    //       },
+                    //       child: Text(
+                    //         'Modo Automático',
+                    //         style: TextStyle(
+                    //             color: playerController
+                    //                     .playerModelController.autoChangePlayer
+                    //                 ? Colors.lightGreen
+                    //                 : Colors.blueGrey),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
               ],

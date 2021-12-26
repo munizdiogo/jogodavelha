@@ -44,11 +44,6 @@ class _RoomPageState extends State<RoomPage> with TickerProviderStateMixin {
     return mapColor ?? Colors.white;
   }
 
-  String getNameColorSelected(String color) {
-    var mapColor = Constants.mapNameColors[color];
-    return mapColor ?? 'white';
-  }
-
   double getSizeCircle(String color) {
     return color == colorSelected
         ? Constants.sizeBigCircleColor
@@ -59,6 +54,30 @@ class _RoomPageState extends State<RoomPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     var playerController = Provider.of<PlayerController>(context);
     controllerTextJogoAnimation.forward();
+
+    bool validatePlayer() {
+      if (textEditingController.text.isEmpty) {
+        showMessageValidation(
+          context: context,
+          text: 'Digite seu apelido',
+        );
+        return false;
+      } else if (colorSelected == '') {
+        showMessageValidation(
+          context: context,
+          text: 'Escolha uma cor',
+        );
+        return false;
+      } else {
+        playerModel = PlayerModel(
+          namePlayer1: textEditingController.text,
+          colorPlayer1: colorSelected,
+          activePlayer: enumPlayer.PLAYER1,
+        );
+        return true;
+      }
+    }
+
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -84,8 +103,8 @@ class _RoomPageState extends State<RoomPage> with TickerProviderStateMixin {
                           ),
                         );
                       }),
-                  Image.network(
-                    "https://static.wikia.nocookie.net/coragem/images/9/95/Muriel.png/revision/latest/top-crop/width/360/height/450?cb=20130423151854&path-prefix=pt-br",
+                  Image.asset(
+                    'assets/images/muriel.png',
                     width: 200,
                   ),
                 ],
@@ -109,67 +128,67 @@ class _RoomPageState extends State<RoomPage> with TickerProviderStateMixin {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
-                      onTap: () => toggleColor('color1'),
+                      onTap: () => toggleColor('purple'),
                       child: ClipOval(
                         child: AnimatedContainer(
-                          color: getColorSelected('color1'),
-                          height: getSizeCircle('color1'),
-                          width: getSizeCircle('color1'),
+                          color: getColorSelected('purple'),
+                          height: getSizeCircle('purple'),
+                          width: getSizeCircle('purple'),
                           duration: const Duration(milliseconds: 300),
                         ),
                       ),
                     ),
                     GestureDetector(
-                      onTap: () => toggleColor('color2'),
+                      onTap: () => toggleColor('amber'),
                       child: ClipOval(
                         child: AnimatedContainer(
-                          color: getColorSelected('color2'),
-                          height: getSizeCircle('color2'),
-                          width: getSizeCircle('color2'),
+                          color: getColorSelected('amber'),
+                          height: getSizeCircle('amber'),
+                          width: getSizeCircle('amber'),
                           duration: const Duration(milliseconds: 300),
                         ),
                       ),
                     ),
                     GestureDetector(
-                      onTap: () => toggleColor('color3'),
+                      onTap: () => toggleColor('pink'),
                       child: ClipOval(
                         child: AnimatedContainer(
-                          color: getColorSelected('color3'),
-                          height: getSizeCircle('color3'),
-                          width: getSizeCircle('color3'),
+                          color: getColorSelected('pink'),
+                          height: getSizeCircle('pink'),
+                          width: getSizeCircle('pink'),
                           duration: const Duration(milliseconds: 300),
                         ),
                       ),
                     ),
                     GestureDetector(
-                      onTap: () => toggleColor('color4'),
+                      onTap: () => toggleColor('cyan'),
                       child: ClipOval(
                         child: AnimatedContainer(
-                          color: getColorSelected('color4'),
-                          height: getSizeCircle('color4'),
-                          width: getSizeCircle('color4'),
+                          color: getColorSelected('cyan'),
+                          height: getSizeCircle('cyan'),
+                          width: getSizeCircle('cyan'),
                           duration: const Duration(milliseconds: 300),
                         ),
                       ),
                     ),
                     GestureDetector(
-                      onTap: () => toggleColor('color5'),
+                      onTap: () => toggleColor('deepOrange'),
                       child: ClipOval(
                         child: AnimatedContainer(
-                          color: getColorSelected('color5'),
-                          height: getSizeCircle('color5'),
-                          width: getSizeCircle('color5'),
+                          color: getColorSelected('deepOrange'),
+                          height: getSizeCircle('deepOrange'),
+                          width: getSizeCircle('deepOrange'),
                           duration: const Duration(milliseconds: 300),
                         ),
                       ),
                     ),
                     GestureDetector(
-                      onTap: () => toggleColor('color6'),
+                      onTap: () => toggleColor('lightGreen'),
                       child: ClipOval(
                         child: AnimatedContainer(
-                          color: getColorSelected('color6'),
-                          height: getSizeCircle('color6'),
-                          width: getSizeCircle('color6'),
+                          color: getColorSelected('lightGreen'),
+                          height: getSizeCircle('lightGreen'),
+                          width: getSizeCircle('lightGreen'),
                           duration: const Duration(milliseconds: 300),
                         ),
                       ),
@@ -178,37 +197,66 @@ class _RoomPageState extends State<RoomPage> with TickerProviderStateMixin {
                 ),
               ),
               const SizedBox(height: 50),
-              ElevatedButton(
-                onPressed: () {
-                  if (textEditingController.text.isEmpty) {
-                    showMessageValidation(
-                      context: context,
-                      text: 'Digite seu apelido',
-                    );
-                  } else if (colorSelected == '') {
-                    showMessageValidation(
-                      context: context,
-                      text: 'Escolha uma cor',
-                    );
-                  } else {
-                    playerModel = PlayerModel(
-                      namePlayer1: textEditingController.text,
-                      colorPlayer1: getColorSelected(colorSelected),
-                      activePlayer: enumPlayer.PLAYER1,
-                    );
-
-                    playerController.createGame(playerModel);
-
-                    Navigator.pushReplacementNamed(
-                      context,
-                      route.GAME,
-                    );
-                  }
-                },
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text("Jogar"),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 150,
+                    height: 60,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (validatePlayer()) {
+                          playerController.createGame(
+                              playerModel: playerModel, typeGame: "treino");
+                          Navigator.pushReplacementNamed(
+                            context,
+                            route.GAME,
+                          );
+                        }
+                      },
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.black54),
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          "Modo \nTreino",
+                          style:
+                              TextStyle(fontSize: 18, color: Colors.deepPurple),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  SizedBox(
+                    width: 150,
+                    height: 60,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (validatePlayer()) {
+                          playerController.createGame(
+                              playerModel: playerModel, typeGame: "x1");
+                          Navigator.pushReplacementNamed(
+                            context,
+                            route.GAME,
+                          );
+                        }
+                      },
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.indigo),
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          "X1 contra \num  amigo",
+                          style: TextStyle(fontSize: 18, color: Colors.white60),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

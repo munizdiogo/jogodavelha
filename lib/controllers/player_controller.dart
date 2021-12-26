@@ -8,6 +8,8 @@ class PlayerController with ChangeNotifier {
     namePlayer1: '',
   );
 
+  String typeGame = "x1";
+
   Database database = Database();
   String idGameFirebase = '';
 
@@ -21,10 +23,14 @@ class PlayerController with ChangeNotifier {
     'endHeight': 0,
   };
 
-  Future<void> createGame(PlayerModel playerModel) async {
+  Future<void> createGame(
+      {required PlayerModel playerModel, required String typeGame}) async {
     playerModelController = playerModel;
-    var response = await database.createGame(playerModel: playerModel);
-    print(response);
+
+    if (typeGame == 'x1') {
+      var response = await database.createGame(playerModel: playerModel);
+      print(response);
+    }
     notifyListeners();
   }
 

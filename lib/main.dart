@@ -16,7 +16,7 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   final Future<FirebaseApp> _initialization = Firebase.initializeApp(
-    options: FirebaseOptions(
+    options: const FirebaseOptions(
         apiKey: "AIzaSyBEPMhSDhsKnB3wx65kP7xfgvwJ-HHzTZU",
         authDomain: "jogodavelha-e228e.firebaseapp.com",
         projectId: "jogodavelha-e228e",
@@ -44,14 +44,25 @@ class MyApp extends StatelessWidget {
             future: _initialization,
             builder: (context, snapshot) {
               if (snapshot.hasError) {
+                const Center(
+                  child: Text(
+                      "Ops! Ocorreu um erro\n\nVerifiquei se está conectado a internet \ne tente novamente."),
+                );
                 print('ERROR');
               }
               if (snapshot.connectionState == ConnectionState.done) {
-                return RoomPage();
+                return const RoomPage();
               }
-              return Center(child: CircularProgressIndicator());
+              return Center(
+                  child: Column(
+                children: const [
+                  CircularProgressIndicator(),
+                  Text("Prepapando seu jogo"),
+                ],
+              ));
             }),
         darkTheme: ThemeData.dark(),
+        themeMode: ThemeMode.dark,
         routes: {
           route.ROOM: (context) => const RoomPage(),
           route.GAME: (context) => const GamePage(),

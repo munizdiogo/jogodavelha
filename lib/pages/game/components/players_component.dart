@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jogodavelha/constants.dart';
 import 'package:jogodavelha/controllers/player_controller.dart';
 import 'package:jogodavelha/models/player_model.dart';
 import 'package:provider/provider.dart';
@@ -34,8 +35,8 @@ class _PlayersComponentsState extends State<PlayersComponents> {
                       child: Icon(
                         Icons.person,
                         size: 42,
-                        color:
-                            playerController.playerModelController.colorPlayer1,
+                        color: Constants.mapColors[playerController
+                            .playerModelController.colorPlayer1],
                       ),
                     ),
                     AnimatedContainer(
@@ -53,8 +54,8 @@ class _PlayersComponentsState extends State<PlayersComponents> {
                   child: Text(
                     playerController.playerModelController.namePlayer1,
                     style: TextStyle(
-                      color:
-                          playerController.playerModelController.colorPlayer1,
+                      color: Constants.mapColors[
+                          playerController.playerModelController.colorPlayer1],
                       fontSize: 16,
                     ),
                   ),
@@ -90,8 +91,8 @@ class _PlayersComponentsState extends State<PlayersComponents> {
                         Icons.person,
                         size: 42,
                         color: winer != null
-                            ? playerController
-                                .playerModelController.colorPlayer2
+                            ? Constants.mapColors[playerController
+                                .playerModelController.colorPlayer2]
                             : Colors.white,
                       ),
                     ),
@@ -112,11 +113,12 @@ class _PlayersComponentsState extends State<PlayersComponents> {
                     playerController.playerModelController.namePlayer2 ??
                         'Jogador 2',
                     style: TextStyle(
-                      color: playerController
-                                  .playerModelController.namePlayer2 !=
-                              null
-                          ? playerController.playerModelController.colorPlayer2
-                          : Colors.white,
+                      color:
+                          playerController.playerModelController.namePlayer2 !=
+                                  null
+                              ? Constants.mapColors[playerController
+                                  .playerModelController.colorPlayer2]
+                              : Colors.white,
                       fontSize: 16,
                     ),
                   ),

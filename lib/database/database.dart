@@ -12,8 +12,8 @@ class Database {
     return games
         .add({
           'autoChangePlayer': playerModel.autoChangePlayer,
-          'activePlayer': playerModel.activePlayer.toString(),
-          'winnerPlayer': playerModel.winnerPlayer.toString(),
+          'activePlayer': playerModel.activePlayer.toString().split('.').last,
+          'winnerPlayer': playerModel.winnerPlayer.toString().split('.').last,
           'tagPlayer1': playerModel.tagPlayer1,
           'tagPlayer2': playerModel.tagPlayer2,
           'gameFinished': playerModel.gameFinished,
@@ -30,9 +30,10 @@ class Database {
           'colorPlayer1': playerModel.colorPlayer1.toString(),
           'namePlayer2': playerModel.namePlayer2,
           'colorPlayer2': playerModel.colorPlayer2.toString(),
+          'dateTime': playerModel.dateTime
         })
-        .then((value) => print("Game Added"))
-        .catchError((error) => print("Failed to add game: $error"));
+        .then((value) => value)
+        .catchError((error) => error);
   }
 
   Future<void> getGame(var gameId) {

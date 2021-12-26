@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jogodavelha/constants.dart';
 import 'package:jogodavelha/controllers/player_controller.dart';
 import 'package:jogodavelha/models/player_model.dart';
 import 'package:provider/provider.dart';
@@ -37,10 +38,14 @@ class _SquareComponentState extends State<SquareComponent> {
         if (playerController.playerModelController.activePlayer ==
             enumPlayer.PLAYER1) {
           tagPlayer = playerController.playerModelController.tagPlayer1;
-          colorTagPlayer = playerController.playerModelController.colorPlayer1;
+          colorTagPlayer = Constants.mapColors[
+                  playerController.playerModelController.colorPlayer1] ??
+              Colors.white;
         } else {
           tagPlayer = playerController.playerModelController.tagPlayer2;
-          colorTagPlayer = playerController.playerModelController.colorPlayer2;
+          colorTagPlayer = Constants.mapColors[
+                  playerController.playerModelController.colorPlayer2] ??
+              Colors.white;
         }
         if (idSquare == 'a1') {
           playerController.playerModelController.a1 = tagPlayer;
