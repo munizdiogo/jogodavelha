@@ -5,11 +5,9 @@ import 'package:provider/provider.dart';
 
 class SquareComponent extends StatefulWidget {
   final String id;
-  final VoidCallback callback;
   const SquareComponent({
     Key? key,
     required this.id,
-    required this.callback,
   }) : super(key: key);
 
   @override
@@ -31,6 +29,7 @@ class _SquareComponentState extends State<SquareComponent> {
   @override
   Widget build(BuildContext context) {
     var playerController = Provider.of<PlayerController>(context);
+
     void showTag({required String idSquare}) {
       setState(() {
         isSelected = isSelected ? isSelected : !isSelected;
@@ -71,8 +70,6 @@ class _SquareComponentState extends State<SquareComponent> {
           playerController.playerModelController.c3 = tagPlayer;
         }
 
-        widget.callback();
-
         if (playerController.playerModelController.autoChangePlayer) {
           if (playerController.playerModelController.activePlayer ==
               enumPlayer.PLAYER1) {
@@ -84,6 +81,7 @@ class _SquareComponentState extends State<SquareComponent> {
           }
         }
       });
+      playerController.verificationGameFinish();
       playerController.updateController();
     }
 

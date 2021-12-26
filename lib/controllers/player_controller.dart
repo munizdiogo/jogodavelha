@@ -7,10 +7,70 @@ class PlayerController with ChangeNotifier {
     namePlayer1: '',
   );
 
+  double lineAnimationAlignmentX = 0;
+  double lineAnimationAlignmentY = 0;
+  double lineAnimationRotation = 0;
+  Map<String, double> sizeLineAnimation = {
+    'beginWidth': 0,
+    'beginHeight': 0,
+    'endWidth': 0,
+    'endHeight': 0,
+  };
+
   void createGame(PlayerModel playerModel) {
     playerModelController = playerModel;
     notifyListeners();
   }
+
+  void updateController() {
+    notifyListeners();
+  }
+
+  bool verificationGameFinish() {
+    sizeLineAnimation['endWidth'] = 8;
+    sizeLineAnimation['endHeight'] = 350;
+
+    if (getResultLine1()) {
+      setWinnerPlayer(playerModelController.a1!);
+      setValuesAnimationLine(alignX: 0, alignY: -1.5, rotation: 0.25);
+    } else if (getResultLine2()) {
+      setWinnerPlayer(playerModelController.b1!);
+      setValuesAnimationLine(alignX: 0, alignY: 0, rotation: 0.25);
+    } else if (getResultLine3()) {
+      setWinnerPlayer(playerModelController.c1!);
+      setValuesAnimationLine(alignX: 0, alignY: 1.5, rotation: 0.25);
+    } else if (getResultColumn1()) {
+      setWinnerPlayer(playerModelController.a1!);
+      setValuesAnimationLine(alignX: -0.6, alignY: 0, rotation: 0);
+    } else if (getResultColumn2()) {
+      setWinnerPlayer(playerModelController.a2!);
+      setValuesAnimationLine(alignX: 0, alignY: 0, rotation: 0);
+    } else if (getResultColumn3()) {
+      setWinnerPlayer(playerModelController.a3!);
+      setValuesAnimationLine(alignX: 0.6, alignY: 0, rotation: 0);
+    } else if (getResultDiagonalA1C3()) {
+      setWinnerPlayer(playerModelController.a1!);
+      setValuesAnimationLine(alignX: 0, alignY: 0, rotation: -0.13);
+    } else if (getResultDiagonalA3C1()) {
+      setWinnerPlayer(playerModelController.a3!);
+      setValuesAnimationLine(alignX: 0, alignY: 0, rotation: 0.13);
+    } else if (getResultTied()) {
+      setWinnerPlayer('TIED');
+      setValuesAnimationLine(alignX: 0, alignY: 0, rotation: 0);
+      sizeLineAnimation['endWidth'] = 350;
+      sizeLineAnimation['endHeight'] = 350;
+    }
+
+    if (playerModelController.winnerPlayer != null) {
+      playerModelController.gameFinished = true;
+      return true;
+    }
+    return false;
+  }
+
+/*
+** RESULTADO DO JOGO
+*/
 
   enumPlayer getWinnerPlayer(String tagPlayer) {
     if (tagPlayer == playerModelController.tagPlayer1) {
@@ -20,10 +80,6 @@ class PlayerController with ChangeNotifier {
     } else {
       return enumPlayer.TIED;
     }
-  }
-
-  void updateController() {
-    notifyListeners();
   }
 
   void setWinnerPlayer(String player) {
@@ -73,9 +129,9 @@ class PlayerController with ChangeNotifier {
   }
 
   bool getResultDiagonalA1C3() {
-    if (playerModelController.a3 != null &&
-        playerModelController.a3 == playerModelController.b3 &&
-        playerModelController.b3 == playerModelController.c3) return true;
+    if (playerModelController.a1 != null &&
+        playerModelController.a1 == playerModelController.b2 &&
+        playerModelController.b2 == playerModelController.c3) return true;
     return false;
   }
 
@@ -104,5 +160,19 @@ class PlayerController with ChangeNotifier {
         playerModelController.c2 != null &&
         playerModelController.c3 != null) return true;
     return false;
+  }
+
+/*
+** ANIMAÇÕES
+*/
+
+  void setValuesAnimationLine({
+    double alignX = 0,
+    double alignY = 0,
+    double rotation = 0,
+  }) {
+    lineAnimationAlignmentX = alignX;
+    lineAnimationAlignmentY = alignY;
+    lineAnimationRotation = rotation;
   }
 }

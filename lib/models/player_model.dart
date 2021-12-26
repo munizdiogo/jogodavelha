@@ -14,7 +14,7 @@ class PlayerModel {
   final String? namePlayer2;
   final Color colorPlayer2;
   final String tagPlayer2;
-  final bool gameFinished;
+  bool gameFinished;
   String? a1;
   String? a2;
   String? a3;
