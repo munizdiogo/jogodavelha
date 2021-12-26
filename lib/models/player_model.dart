@@ -24,7 +24,7 @@ class PlayerModel {
   String? c1;
   String? c2;
   String? c3;
-  String? idFirebase;
+  String? idGameFirebase;
   String? dateTime = DateTime.now().toString();
 
   PlayerModel({
@@ -48,5 +48,6 @@ class PlayerModel {
     this.namePlayer2,
     this.colorPlayer2 = '',
     this.dateTime,
+    this.idGameFirebase = '',
   });
 }

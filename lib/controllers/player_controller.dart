@@ -11,7 +11,6 @@ class PlayerController with ChangeNotifier {
   String typeGame = "x1";
 
   Database database = Database();
-  String idGameFirebase = '';
 
   double lineAnimationAlignmentX = 0;
   double lineAnimationAlignmentY = 0;
@@ -26,12 +25,27 @@ class PlayerController with ChangeNotifier {
   Future<void> createGame(
       {required PlayerModel playerModel, required String typeGame}) async {
     playerModelController = playerModel;
+    playerModelController.dateTime = DateTime.now().toString();
 
     if (typeGame == 'x1') {
-      var response = await database.createGame(playerModel: playerModel);
-      print(response);
+      var response =
+          await database.createGame(playerModel: playerModelController);
+      playerModelController.idGameFirebase = response;
     }
     notifyListeners();
+  }
+
+  Future getInfoMoveGame() async {
+    var response = await database.getGame(playerModelController.idGameFirebase);
+    notifyListeners();
+    return response;
+  }
+
+  Future<void> sendInfoGame() async {
+    await database.updateGame(
+        playerModelController.idGameFirebase, playerModelController);
+    notifyListeners();
+    return Future.value();
   }
 
   void updateController() {

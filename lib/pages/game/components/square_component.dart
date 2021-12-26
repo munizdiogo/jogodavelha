@@ -87,6 +87,8 @@ class _SquareComponentState extends State<SquareComponent> {
         }
       });
       playerController.verificationGameFinish();
+      playerController.sendInfoGame();
+      playerController.getInfoMoveGame();
       playerController.updateController();
     }
 

@@ -39,6 +39,8 @@ class _GamePageState extends State<GamePage> {
                       },
                       child: const Text('Sair do Jogo'),
                     ),
+                    Text(
+                        'teste:${playerController.playerModelController.idGameFirebase}'),
                     TextButton(
                       onPressed: () {
                         setState(() {

@@ -8,7 +8,6 @@ class Database {
   PlayerModel playerModel = PlayerModel();
 
   Future createGame({required playerModel}) {
-    print('passei aqu addGame');
     return games
         .add({
           'autoChangePlayer': playerModel.autoChangePlayer,
@@ -32,19 +31,20 @@ class Database {
           'colorPlayer2': playerModel.colorPlayer2.toString(),
           'dateTime': playerModel.dateTime
         })
-        .then((value) => value)
+        .then((value) => value.id)
         .catchError((error) => error);
   }
 
-  Future<void> getGame(var gameId) {
+  Future getGame(var gameId) {
     return FirebaseFirestore.instance
         .collection('games')
         .doc(gameId)
         .get()
         .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
-        print('Document data: ${documentSnapshot.data()}');
+        return documentSnapshot.data();
       } else {
+        return null;
         print('Document does not exist on the database');
       }
     });
@@ -55,8 +55,8 @@ class Database {
         .doc(gameId)
         .update({
           'autoChangePlayer': playerModel.autoChangePlayer,
-          'activePlayer': playerModel.activePlayer,
-          'winnerPlayer': playerModel.winnerPlayer,
+          'activePlayer': playerModel.activePlayer.toString().split('.').last,
+          'winnerPlayer': playerModel.winnerPlayer.toString().split('.').last,
           'tagPlayer1': playerModel.tagPlayer1,
           'tagPlayer2': playerModel.tagPlayer2,
           'gameFinished': playerModel.gameFinished,
@@ -74,7 +74,7 @@ class Database {
           'namePlayer2': playerModel.namePlayer2,
           'colorPlayer2': playerModel.colorPlayer2,
         })
-        .then((value) => print("Game Updated"))
+        .then((value) => null)
         .catchError((error) => print("Failed to update game: $error"));
   }
 }
