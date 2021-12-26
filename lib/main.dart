@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:jogodavelha/controllers/player_controller.dart';
 import 'package:jogodavelha/pages/game/game_page.dart';
@@ -6,12 +7,24 @@ import 'package:provider/provider.dart';
 
 import 'pages/room/room_page.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp(
+    options: FirebaseOptions(
+        apiKey: "AIzaSyBEPMhSDhsKnB3wx65kP7xfgvwJ-HHzTZU",
+        authDomain: "jogodavelha-e228e.firebaseapp.com",
+        projectId: "jogodavelha-e228e",
+        storageBucket: "jogodavelha-e228e.appspot.com",
+        messagingSenderId: "202602780813",
+        appId: "1:202602780813:web:bf04ddbda3a2fdc120eac4",
+        measurementId: "G-0KVLG132GF"),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +40,17 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const RoomPage(),
+        home: FutureBuilder(
+            future: _initialization,
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                print('ERROR');
+              }
+              if (snapshot.connectionState == ConnectionState.done) {
+                return RoomPage();
+              }
+              return Center(child: CircularProgressIndicator());
+            }),
         darkTheme: ThemeData.dark(),
         routes: {
           route.ROOM: (context) => const RoomPage(),

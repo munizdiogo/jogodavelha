@@ -24,10 +24,11 @@ class PlayerModel {
   String? c1;
   String? c2;
   String? c3;
+  String? idFirebase;
 
   PlayerModel({
     this.autoChangePlayer = true,
-    required this.activePlayer,
+    this.activePlayer = enumPlayer.PLAYER1,
     this.winnerPlayer,
     this.tagPlayer1 = 'X',
     this.tagPlayer2 = 'O',
@@ -41,7 +42,7 @@ class PlayerModel {
     this.c1,
     this.c2,
     this.c3,
-    required this.namePlayer1,
+    this.namePlayer1 = 'Jogador 1',
     this.colorPlayer1 = Colors.white,
     this.namePlayer2,
     this.colorPlayer2 = Colors.black,

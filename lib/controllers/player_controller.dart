@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:jogodavelha/database/database.dart';
 import 'package:jogodavelha/models/player_model.dart';
 
 class PlayerController with ChangeNotifier {
@@ -6,6 +7,9 @@ class PlayerController with ChangeNotifier {
     activePlayer: enumPlayer.PLAYER1,
     namePlayer1: '',
   );
+
+  Database database = Database();
+  String idGameFirebase = '';
 
   double lineAnimationAlignmentX = 0;
   double lineAnimationAlignmentY = 0;
@@ -17,8 +21,10 @@ class PlayerController with ChangeNotifier {
     'endHeight': 0,
   };
 
-  void createGame(PlayerModel playerModel) {
+  Future<void> createGame(PlayerModel playerModel) async {
     playerModelController = playerModel;
+    var response = await database.createGame(playerModel: playerModel);
+    print(response);
     notifyListeners();
   }
 
