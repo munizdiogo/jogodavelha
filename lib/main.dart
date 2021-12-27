@@ -55,10 +55,7 @@ class MyApp extends StatelessWidget {
               }
               return Center(
                   child: Column(
-                children: const [
-                  CircularProgressIndicator(),
-                  Text("Prepapando seu jogo"),
-                ],
+                children: const [CircularProgressIndicator()],
               ));
             }),
         darkTheme: ThemeData.dark(),

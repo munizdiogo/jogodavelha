@@ -16,7 +16,7 @@ class SquareComponent extends StatefulWidget {
 }
 
 class _SquareComponentState extends State<SquareComponent> {
-  bool isSelected = false;
+  bool isSelected = true;
   late String tagPlayer;
   late Color colorTagPlayer;
 
@@ -30,54 +30,55 @@ class _SquareComponentState extends State<SquareComponent> {
   @override
   Widget build(BuildContext context) {
     var playerController = Provider.of<PlayerController>(context);
+    var playerModelController = playerController.playerModelController;
 
     void showTag({required String idSquare}) {
-      setState(() {
-        isSelected = isSelected ? isSelected : !isSelected;
+      if ((idSquare == 'a1' && playerModelController.a1 != null) ||
+          (idSquare == 'a2' && playerModelController.a2 != null) ||
+          (idSquare == 'a3' && playerModelController.a3 != null) ||
+          (idSquare == 'b1' && playerModelController.b1 != null) ||
+          (idSquare == 'b2' && playerModelController.b2 != null) ||
+          (idSquare == 'b3' && playerModelController.b3 != null) ||
+          (idSquare == 'c1' && playerModelController.c1 != null) ||
+          (idSquare == 'c2' && playerModelController.c2 != null) ||
+          (idSquare == 'c3' && playerModelController.c3 != null)) {
+        return null;
+      }
 
-        if (playerController.playerModelController.activePlayer ==
-            enumPlayer.PLAYER1) {
-          tagPlayer = playerController.playerModelController.tagPlayer1;
-          colorTagPlayer = Constants.mapColors[
-                  playerController.playerModelController.colorPlayer1] ??
-              Colors.white;
+      setState(() {
+        if (playerModelController.activePlayer == enumPlayer.PLAYER1) {
+          tagPlayer = playerModelController.tagPlayer1;
+          colorTagPlayer =
+              Constants.mapColors[playerModelController.colorPlayer1] ??
+                  Colors.white;
         } else {
-          tagPlayer = playerController.playerModelController.tagPlayer2;
-          colorTagPlayer = Constants.mapColors[
-                  playerController.playerModelController.colorPlayer2] ??
-              Colors.white;
+          tagPlayer = playerModelController.tagPlayer2;
+          colorTagPlayer =
+              Constants.mapColors[playerModelController.colorPlayer2] ??
+                  Colors.white;
         }
-        if (idSquare == 'a1') {
+        if (idSquare == 'a1' && playerModelController.a1 == null) {
+          print('passei aqui heheheh');
           playerController.playerModelController.a1 = tagPlayer;
-        }
-        if (idSquare == 'a2') {
+        } else if (idSquare == 'a2') {
           playerController.playerModelController.a2 = tagPlayer;
-        }
-        if (idSquare == 'a3') {
+        } else if (idSquare == 'a3') {
           playerController.playerModelController.a3 = tagPlayer;
-        }
-        if (idSquare == 'b1') {
+        } else if (idSquare == 'b1') {
           playerController.playerModelController.b1 = tagPlayer;
-        }
-        if (idSquare == 'b2') {
+        } else if (idSquare == 'b2') {
           playerController.playerModelController.b2 = tagPlayer;
-        }
-        if (idSquare == 'b3') {
+        } else if (idSquare == 'b3') {
           playerController.playerModelController.b3 = tagPlayer;
-        }
-        if (idSquare == 'c1') {
+        } else if (idSquare == 'c1') {
           playerController.playerModelController.c1 = tagPlayer;
-        }
-        if (idSquare == 'c2') {
+        } else if (idSquare == 'c2') {
           playerController.playerModelController.c2 = tagPlayer;
-        }
-        if (idSquare == 'c3') {
+        } else if (idSquare == 'c3') {
           playerController.playerModelController.c3 = tagPlayer;
         }
-
-        if (playerController.playerModelController.autoChangePlayer) {
-          if (playerController.playerModelController.activePlayer ==
-              enumPlayer.PLAYER1) {
+        if (playerModelController.autoChangePlayer) {
+          if (playerModelController.activePlayer == enumPlayer.PLAYER1) {
             playerController.playerModelController.activePlayer =
                 enumPlayer.PLAYER2;
           } else {
@@ -85,10 +86,12 @@ class _SquareComponentState extends State<SquareComponent> {
                 enumPlayer.PLAYER1;
           }
         }
+        playerController.verificationGameFinish();
       });
-      playerController.verificationGameFinish();
-      playerController.sendInfoGame();
-      playerController.getInfoMoveGame();
+      if (playerController.typeGame == 'x1') {
+        playerController.sendInfoGame();
+        playerController.getInfoMoveGame();
+      }
       playerController.updateController();
     }
 

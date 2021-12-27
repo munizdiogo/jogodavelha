@@ -205,9 +205,11 @@ class _RoomPageState extends State<RoomPage> with TickerProviderStateMixin {
                     height: 60,
                     child: ElevatedButton(
                       onPressed: () {
+                        playerController.typeGame = "treino";
                         if (validatePlayer()) {
                           playerController.createGame(
-                              playerModel: playerModel, typeGame: "treino");
+                              playerModel: playerModel,
+                              typeGame: playerController.typeGame);
                           Navigator.pushReplacementNamed(
                             context,
                             route.GAME,
